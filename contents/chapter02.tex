@@ -1,0 +1,54 @@
+% !TeX root = ../main.tex
+
+\chapter{研究方法}
+
+\section{運動方程式}
+We used the Fast Lagrangian Analysis of Continua (FLAC) technique.
+Continuum
+In geodynamics modelling, we consider major rock units as continuous geological media. The continuous description is described by field variables such as density, pressure, velocity, strain, etc. Since on long timescales geological unit behave like slowly creep fluids, geodynamics process in the viscous part (mantle) are often referred to as process of geodynamical fluid dynamics. 
+
+the mass conservation equation in Lagrangian form is as follow
+
+$\frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho \frac{\partial D_{vi}}{\partial t}$ (2.1)
+
+The proof of eq.(2.1) is as follow
+
+There are totally two unknow: density and velocity.
+While in geodynamics modelling, the density variations are small enough to be ignored, which is the result of Boussinesq approximation. The Boussinesq approximation assume that the density is linear proportional to the temperature and the small density variation is then neglected, expect the gravity term.
+
+$\rho (T) = \rho_0[1-\alpha (T-T_0)]$ (2.2)
+
+where ρ0 is the reference density at temperature T0 and α is the volumetric thermal expansion coefficient. The boussinesq approximation also represent the incompressible condition, which mean the density of material points does no change with time. 
+
+$\nabla \cdot (\vec v) = 0$ (2.3)
+
+The incompressible continuity equation is broadly used in numerical geodynamic modelling, although on many cases it is rather big simplification. 
+
+
+Eq. (2.3) is the conservation of mass in our numerical modelling approach.
+
+
+Momentum Equation
+
+In geodynamics, the time-dependent phenomena involve deformation of continuous media, which is the effect of the balance of internal and external forces that act in these media. So as to relate forces and deformation, an equation of motion may be used --The momentum equation. The momentum equation is a differential equivalent of Newton’s second law to a continuous medium.
+
+$f=ma$
+
+Eulerian Form: $\frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho (\frac{\partial v_i}{\partial t}+v_j\frac{\partial v_i}{\partial x_j})$
+
+Lagrangian Form: $\frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho \frac{\partial D_{vi}}{\partial t}$
+
+F is the net force acting on the object which can be computed locally. 
+
+We will proof the momentum equation of Lagrangian Form below:
+
+For x-component
+
+$f_x=f_{xA}+f_{xB}+f_{xC}+f_{xD}+f_{xE}+f_{xF}+mg_x$ (2.4)
+
+$f_{xA}- f_{xF}$ are stress-related forces, from the outside of the volume on the resoective boundaries A-F. 
+$f_g=m_gx$ is the gravity force.
+
+$f_{xA} = -\sigma_{xxA}\Delta y\Delta z$
+
+
