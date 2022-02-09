@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.20)  9 FEB 2022 13:06
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.20)  9 FEB 2022 21:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1229,15 +1229,6 @@ Package zhlipsum Info: Chinese dummy text "aspirin" is created. It has 66
 
 )))
 (./main.aux)
-Runaway argument?
-{\contentsline {secti 
-./main.tex:17: File ended while scanning use of \@writefile.
-<inserted text> 
-                \par 
-l.17 \begin{document}
-                     
-? s
-OK, entering \scrollmode...
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -1251,7 +1242,7 @@ LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
 7.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 17.
@@ -1571,24 +1562,27 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [8
 
-] (./main.toc)
+] (./main.toc
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [9])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [9]
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [10
 
-] (./main.lof)
+[10] (./main.lof)
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [11]
+ [11
+
+]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [12
@@ -1597,8 +1591,7 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 \tf@lot=\write7
 \openout7 = `main.lot'.
 
-
-(./front/denotation.tex
+ (./front/denotation.tex
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [13]
@@ -1609,7 +1602,8 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 ])
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [15]
+
+[15]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [16
@@ -1690,23 +1684,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [8])
-(./contents/chapter03.tex
+ [8]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [9]
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [10
 
-]
+[9]) (./contents/chapter03.tex
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [10]
 Chapter 3.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [11])
+ [11
+
+])
 Missing character: There is no 䧿 (U+49FF) in font [./fonts/chinese/BiauKai.ttf]
 /OT:script=hani;language=dflt;!
 Missing character: There is no 𪊨 (U+2A2A8) in font [./fonts/chinese/BiauKai.ttf
@@ -1720,9 +1714,8 @@ Chapter 4.
 ./contents/chapter04.tex:11: Text line contains an invalid character.
 l.11 ^^P
         This is just to test \cite{Krasnogor2004e} the cite function.
-A funny symbol that I can't read has just been input.
-Continue, and I'll forget that it ever happened.
-
+? s
+OK, entering \scrollmode...
 
 Package natbib Warning: Citation `Krasnogor2004e' on page 13 undefined on input
  line 11.
@@ -1761,24 +1754,21 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.28pt have occurred.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
 Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  052658F9897F90F4C29209D52AB844FE;3256.
+(rerunfilecheck)             Before: 052658F9897F90F4C29209D52AB844FE;3256
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30889 strings out of 476919
- 618199 string characters out of 5821839
+ 30894 strings out of 476919
+ 618219 string characters out of 5821839
  1294421 words of memory out of 5000000
- 50229 multiletter control sequences out of 15000+600000
+ 50234 multiletter control sequences out of 15000+600000
  418263 words of font info for 125 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,16n,131p,1011b,808s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,16n,131p,1011b,809s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on main.pdf (34 pages).
