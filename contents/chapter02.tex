@@ -2,6 +2,11 @@
 
 \chapter{研究方法}
 
+The numerical models in this study address the dynamics process of flat subduction, in which an oceanic plate subducts beneath continental plate. The goal of this work is to address the controls on subducting plate dynamics and 
+to determine the conditions under which flat subduction may develop. 
+
+In this chapter, we introduce the method of numerical model and the initial model setup. In section 2.1, we discuss the governing equations. In section 2.2, the finite elements method will be briefly discuss. In section 2.3, we introduce the Fast Lagrangian Analysis of Continua technique. In section 2.4, the model geometry is presented. The material properties, phase transition and model boundary conditions are given in section 2.5 ,2.6 and 2.7, respectively.
+
 \section{運動方程式}
 
 Continuum
@@ -15,6 +20,8 @@ The mass conservation equation in Lagrangian form is as follow
 \end{align}
 
 The proof of eq.(2.1) is as follow
+
+
 
 There are totally two unknow: density and velocity.
 While in geodynamics modelling, the density variations are small enough to be ignored, which is the result of Boussinesq approximation. The Boussinesq approximation assume that the density is linear proportional to the temperature and the small density variation is then neglected, except the gravity term.
@@ -83,24 +90,72 @@ rheology
 
 *What is viscous and the viscous rheology of rock*
 
-In the near-surface region, rocks undergo relatively low temperature and, therefore, the Earth's lithosphere easily result in brittle (at low pressure) and plastic (at high pressure) deformation. While in the deep earth, temperature increasing with depth, rocks behave viscous with irreversible deformation. Therefore, if a geodynamics model want to account for a wide range rock properties, the model should consider the elasto-visco-plastic rheology of rocks.
-
-
-
-
-
-Why care about elastivity and plasticity? (From Introduction of Numerical Modelling)
-
-Rocks behave elastically on a relatively short time scale (<$10^4$ year) and, therefore, modelling of relatively fast processes within the Earth's crust and mantle (e.g. magma intrusion) should take into account the elastic propertied of rocks. 
-On the other hane, rocks at cold temperatures can also be subjected to localised brittle (at low pressure) and plastic (at higher pressure) deformation, which leads to shear zones and fracture zones in natural rock complexes.
-Therefore, if we want to account for this broad range of geodynamic conditions in our models, we should generally consider the visco-elasto-plastic rheology of rocks and be able to model such a complex rheology with our thermomechanical numerical codes.
+In the near-surface region, rocks undergo relatively low temperature and, therefore, the Earth's lithosphere easily result in brittle (at low pressure) and plastic (at high pressure) deformation. 
+While in the deep earth, temperature increasing with depth, rocks behave viscous with irreversible deformation. 
+Therefore, if a geodynamics model want to account for a wide range rock properties, the model should consider the elasto-visco-plastic rheology of rocks.
 
 \section{Phase change}
 
-phase change
+In this study, we use markers to trace the rocks phases, pressure and temperature. 
+At the time the pressure and temperature satisfy the phase transformation condition, the marker will turns to new rock phase. 
+A basalt element represent an element with more than 30 presents of the basalt phase markers. 
+In this case, the element behave the deformation as same as the basalt rheology.
+
+\subsection{Peridotite --- Serpentinite}
+
+Once the subducting plate sink into mantle, sediment on oceanic plate undergo higher pressure and temperature that release a large amount of fluids. 
+On the other hand, the oceanic plate itself also carries seawater into the mantle. 
+Fluids in subduction zone mostly concentrated in the mantle wedge. 
+The dry mantle wedge undergo hydration process, lead to the transformation of peridotite to serpentinite.  
+The serpentinite depth and thickness in subduction zone is not well understand since the seismic study constrain still contain high uncertainly, we model the phase transformation process of serpentinite in parameter way.     
+
+Serpentinite are stable in the colder mantle wedge relative to deeper mantle, and therefore once the serpentinite under unstable field, we assume that serpentinite rocks release fluid and transfer to peridotite. 
+The following equations are the conditional expressions of serpentinite---peridotite transformation. Figure is the phase diagram of mantle phases.
+
+
+\subsection{Basalt --- Eclogite}
+
+As the oceanic crust sink into deeper mantle, the mafic rocks enters the eclogite stability field in the condition of high pressure. 
+Therefore, basalt phases transform to eclogite.  
+In this model, oceanic crust are tracked and compared with the eclogite stability filed, the following equations are the conditional expressions of mafic rocks transformation. 
+Figure below is the mafic rocks phase diagram.
+
+\subsection{Sediment --- Schist}
+
+Once sediment undergo higher pressure, the compression process and mataphase(變質作用)process occur.
+In this model, the following equations are the conditional expressions of transformation process of sediment to schist.
+
+$T > 650^{\circ} C$
+$depth >  20 $km 
+
+The subducted sediments will turn into schist when temperature is greater than 650$^\circ$C and pressure is greater than (一個數字 算出來?)
+
+\subsection{Hydrated olivine --- Peridotite}
+
+We considering a hydrated peridotite under the oceanic crust in our model. 
+The magma will only generated above the hydrated subducting oceanic lithosphere.
+Once the tempertaure is too high to make the rock contain water, the hydrated olivine transform to normal perodotite.
+The following equation is the conditional expression of this transgformation.
+
+$T > 800-35\times 10^{-9}\times (depth-62)^{2\circ}C$
 
 \section{Boundary condition}
 
-kinematic boundary condition
+\subsection{Kinematic boundary condition}
 
-thermal boundary condition
+\subsection{Thermal boundary condition}
+
+For oceanic lithosphere, we used half space cooling model in our model to defined the thermal condition. 
+The plate depth is proportional to the square root of oceanic lithosphere age, and therefore, the half space cooling model can predict will for the temperature of the oceanic plate.
+Follow by David and Lister,1974:
+
+$T=T_m\cdot erf(\frac{z}{2\sqrt{\kappa t}})$
+
+T is the temperature, $T_m$ is the mantle temperature, in this model the temperature is 1330,
+z is the depth from surface and $\kappa$ is the thermal conductivity ceoficient, that is, $10^{-6}$ in this study.
+t is the lithosphere age in Myr.
+
+
+For continental lithosphere, the thermal condition is defined in linearly.
+
+
