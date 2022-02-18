@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.20)  9 FEB 2022 21:23
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.20)  18 FEB 2022 22:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1050,8 +1050,8 @@ ng=tex-text;"
 
 Package fontspec Info: Font family 'BiauKai(0)' created for font 'BiauKai'
 (fontspec)             with options
-(fontspec)             [Script={CJK},Path={./fonts/chinese/},Extension={.ttf},B
-oldFont={Kaiti-Black}].
+(fontspec)             [Script={CJK},Path={./fonts/chinese/},Extension={.ttf}].
+
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
@@ -1060,10 +1060,6 @@ oldFont={Kaiti-Black}].
 (fontspec)             <->"[./fonts/chinese/BiauKai.ttf]/OT:script=hani;languag
 e=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"[./fonts/chinese/Kaiti-Black.ttf]/OT:script=hani;lan
-guage=dflt;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
@@ -1424,42 +1420,6 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Calculating math sizes for size <18> on input line 21.
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <18> not available
-(Font)              size <17.28> substituted on input line 21.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <12.59995> not available
-(Font)              size <12> substituted on input line 21.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <18> not available
-(Font)              size <17.28> substituted on input line 21.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <12.59995> not available
-(Font)              size <12> substituted on input line 21.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
-
-(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
-
-
-(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <18> not available
-(Font)              size <17.28> substituted on input line 21.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <12.59995> not available
-(Font)              size <12> substituted on input line 21.
-
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
 [1
@@ -1498,40 +1458,17 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Calculating math sizes for size <20> on input line 22.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <20> not available
-(Font)              size <20.74> substituted on input line 22.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <13.99994> not available
-(Font)              size <14.4> substituted on input line 22.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <20> not available
-(Font)              size <20.74> substituted on input line 22.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <13.99994> not available
-(Font)              size <14.4> substituted on input line 22.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <20> not available
-(Font)              size <20.74> substituted on input line 22.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13.99994> not available
-(Font)              size <14.4> substituted on input line 22.
-
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd)
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
-[1
+ [1
 
 
 
 
-] (./front/acknowledgement.tex
+]
+(./front/acknowledgement.tex
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [2
@@ -1546,13 +1483,16 @@ File: ./figures//seal.pdf Graphic file (type pdf)
  [4
 
 ]
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [5]
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
 
-[6
+LaTeX Font Warning: Font shape `TU/BiauKai(0)/b/n' undefined
+(Font)              using `TU/BiauKai(0)/m/n' instead on input line 3.
+
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+[5]
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [6
 
 ])
 File: ./figures//seal.pdf Graphic file (type pdf)
@@ -1567,25 +1507,33 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [9])
+ [9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [10])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
 
-[10] (./main.lof)
+[11]
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [12
+
+] (./main.lof)
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [11
-
-]
+ [13]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [12
+ [14
 
 ] (./main.lot)
 \tf@lot=\write7
@@ -1594,19 +1542,19 @@ File: ./figures//seal.pdf Graphic file (type pdf)
  (./front/denotation.tex
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [13]
+ [15]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [14
+
+[16
 
 ])
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
-
-[15]
+ [17]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [16
+ [18
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -1654,7 +1602,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [2]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1668) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
@@ -1680,67 +1628,82 @@ File: ./figures//seal.pdf Graphic file (type pdf)
  [7
 
 ]
+File: ./figures//momentum.pdf Graphic file (type pdf)
+<use ./figures//momentum.pdf>
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+
+[8]
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [9]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [8]
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
-
-[9]) (./contents/chapter03.tex
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [10]
-Chapter 3.
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
 
+[11]
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [11
-
-])
-Missing character: There is no 䧿 (U+49FF) in font [./fonts/chinese/BiauKai.ttf]
-/OT:script=hani;language=dflt;!
-Missing character: There is no 𪊨 (U+2A2A8) in font [./fonts/chinese/BiauKai.ttf
-]/OT:script=hani;language=dflt;!
-
-(./contents/chapter04.tex
+ [13])
+(./contents/chapter03.tex
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [12]
+ [14]
+Chapter 3.
+) (./contents/chapter04.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [15
+
+]
+Overfull \vbox (131.4008pt too high) has occurred while \output is active []
+
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+
+[16]
 Chapter 4.
-./contents/chapter04.tex:11: Text line contains an invalid character.
-l.11 ^^P
+./contents/chapter04.tex:17: Text line contains an invalid character.
+l.17 ^^P
         This is just to test \cite{Krasnogor2004e} the cite function.
 ? s
 OK, entering \scrollmode...
 
-Package natbib Warning: Citation `Krasnogor2004e' on page 13 undefined on input
- line 11.
+Package natbib Warning: Citation `Krasnogor2004e' on page 17 undefined on input
+ line 17.
 
 )
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [13
+ [17
 
 ]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [14
+ [18
 
 ]
 No file main.bbl.
 (./back/appendix01.tex) (./back/appendix02.tex
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [15
+ [19
 
 ]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [16
+ [20
 
 ])
 
@@ -1748,27 +1711,24 @@ Package natbib Warning: There were undefined citations.
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
-[17] (./main.aux)
+[21] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.28pt have occurred.
 
 
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 052658F9897F90F4C29209D52AB844FE;3256
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 1797CE954D1CE1F55483F55F497605BD;9337.
  ) 
 Here is how much of TeX's memory you used:
- 30894 strings out of 476919
- 618219 string characters out of 5821839
- 1294421 words of memory out of 5000000
- 50234 multiletter control sequences out of 15000+600000
- 418263 words of font info for 125 fonts, out of 8000000 for 9000
+ 30800 strings out of 476919
+ 613232 string characters out of 5821839
+ 1274771 words of memory out of 5000000
+ 50149 multiletter control sequences out of 15000+600000
+ 411915 words of font info for 94 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,16n,131p,1011b,809s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (34 pages).
+Output written on main.pdf (40 pages).

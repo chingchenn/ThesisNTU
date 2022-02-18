@@ -1,49 +1,41 @@
 % !TeX root = ../main.tex
 
-\chapter{研究方法}
+\chapter{Numerical modelling method}
 
-The numerical models in this study address the dynamics process of flat subduction, in which an oceanic plate subducts beneath continental plate. The goal of this work is to address the controls on subducting plate dynamics and 
-to determine the conditions under which flat subduction may develop. 
+The numerical models in this study address the dynamics process of flat subduction, in which an oceanic plate subducts beneath continental plate. The goal of this work is to address the controls on subducting plate dynamics and to determine the conditions under which flat subduction may develop. 
 
 In this chapter, we introduce the method of numerical model and the initial model setup. In section 2.1, we discuss the governing equations. In section 2.2, the finite elements method will be briefly discuss. In section 2.3, we introduce the Fast Lagrangian Analysis of Continua technique. In section 2.4, the model geometry is presented. The material properties, phase transition and model boundary conditions are given in section 2.5 ,2.6 and 2.7, respectively.
 
-\section{運動方程式}
+\section{Governing equation}
 
-Continuum
+\subsection{Continuum---Conservation of mass}
 
 In geodynamics modelling, we consider major rock units as continuous geological media. The continuous description is described by field variables such as density, pressure, velocity, strain, etc. Since on long timescales geological unit behave like slowly creep fluids, geodynamics process in the viscous part (mantle) are often referred to as process of geodynamical fluid dynamics. 
 
 The mass conservation equation in Lagrangian form is as follow
-
 \begin{align}
 \frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho \frac{\partial D_{vi}}{\partial t} 
 \end{align}
-
 The proof of eq.(2.1) is as follow
-
-
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=4in]{momentum.pdf}
+    \caption{ Model. }
+    \label{fig::model}
+\end{figure*}
 
 There are totally two unknow: density and velocity.
 While in geodynamics modelling, the density variations are small enough to be ignored, which is the result of Boussinesq approximation. The Boussinesq approximation assume that the density is linear proportional to the temperature and the small density variation is then neglected, except the gravity term.
-
 \begin{align}
 \rho (T) = \rho_0[1-\alpha (T-T_0)] 
 \end{align}
-
-where $\rho_0$ is the reference density at temperature $T_0$ and $\alpha$ is the volumetric thermal expansion coefficient. The boussinesq approximation also represent the incompressible condition, which mean the density of material points does no change with time. 
-
+where $\rho_0$ is the reference density at temperature $T_0$ and $\alpha$ is the volumetric thermal expansion coefficient. The boussinesq approximation also represent the incompressible condition, which mean the density of material points does no change with time. The incompressible continuity equation is broadly used in numerical geodynamic modelling, although on many cases it is rather big simplification. 
 \begin{align}
 \nabla \cdot (\vec v) = 0 
 \end{align}
-
-The incompressible continuity equation is broadly used in numerical geodynamic modelling, although on many cases it is rather big simplification. 
-
-
 Eq. (2.3) is the conservation of mass in our numerical modelling approach.
 
-
-Momentum Equation
-
+\subsection{Motion---Conservation of momentum}
 In geodynamics, the time-dependent phenomena involve deformation of continuous media, which is the effect of the balance of internal and external forces that act in these media. So as to relate forces and deformation, an equation of motion may be used --The momentum equation. The momentum equation is a differential equivalent of Newton’s second law to a continuous medium.
 
 $f=ma$
@@ -53,24 +45,44 @@ Eulerian Form: $\frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho (\frac
 Lagrangian Form: $\frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho \frac{\partial D_{vi}}{\partial t}$
 
 F is the net force acting on the object which can be computed locally. 
-
 We will proof the momentum equation of Lagrangian Form below:
 
 For x-component
-
 \begin{align}
 f_x=f_{xA}+f_{xB}+f_{xC}+f_{xD}+f_{xE}+f_{xF}+mg_x 
 \end{align}
-
 $f_{xA}- f_{xF}$ are stress-related forces, from the outside of the volume on the resoective boundaries A-F. 
 $f_g=m_gx$ is the gravity force.
-
 \begin{align}
 f_{xA} = -\sigma_{xxA}\Delta y\Delta z
 \end{align}
+\subsection{Heat equation --- Conservation of energy}
+
+To describe the balance of energy in a continuum material, heat equation is apply to measure the temperature change. The heat equation sloved the heat transport and porvided the temperature field. Below is the heat equation in Lagrangian form :
+\begin{align}
+\rho C_p \frac{DT}{Dt} = -\frac{\partial q_x}{\partial x}-\frac{\partial q_y}{\partial y}-\frac{\partial q_z}{\partial z}+H_s+H_L
+\end{align}
+
+where $\rho$ is the density, $C_p$ is the heat capacity at constant pressure (isobaric heat capacity), $H_s$ is shear heating and $H_L$ is the latent heat production.
+
+The proof of heat equation is show below:
+
+(加上heat equation的推倒
+加圖)
 
 
-\section{finite elements method}
+Base on the Boussinesq approximation, the imcompressible Lagrangian form governing equations are:
+
+\begin{align}
+\nabla \cdot (\vec v) = 0 
+\frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho \frac{\partial D_{vi}}{\partial t}
+\rho C_p \frac{DT}{Dt} = -\frac{\partial q_x}{\partial x}-\frac{\partial q_y}{\partial y}-\frac{\partial q_z}{\partial z}+H_s+H_L
+\end{align}
+
+Decribe conservation of mass, conservation of momentum and conservation of energy, respectively.
+
+
+\section{Finite elements method}
 
 finite elements method
 
@@ -86,13 +98,11 @@ initial model
 
 \section{Rheological behavior}
 
-rheology
-
-*What is viscous and the viscous rheology of rock*
+**What is viscous and the viscous rheology of rock**
 
 In the near-surface region, rocks undergo relatively low temperature and, therefore, the Earth's lithosphere easily result in brittle (at low pressure) and plastic (at high pressure) deformation. 
 While in the deep earth, temperature increasing with depth, rocks behave viscous with irreversible deformation. 
-Therefore, if a geodynamics model want to account for a wide range rock properties, the model should consider the elasto-visco-plastic rheology of rocks.
+Therefore, if a geodynamics model need to account for a wide range of rocks properties, it should consider the elasto-visco-plastic rheology of rocks.
 
 \section{Phase change}
 
@@ -125,7 +135,7 @@ Figure below is the mafic rocks phase diagram.
 Once sediment undergo higher pressure, the compression process and mataphase(變質作用)process occur.
 In this model, the following equations are the conditional expressions of transformation process of sediment to schist.
 
-$T > 650^{\circ} C$
+$T > 650^{\circ} C$\\
 $depth >  20 $km 
 
 The subducted sediments will turn into schist when temperature is greater than 650$^\circ$C and pressure is greater than (一個數字 算出來?)
@@ -149,11 +159,11 @@ For oceanic lithosphere, we used half space cooling model in our model to define
 The plate depth is proportional to the square root of oceanic lithosphere age, and therefore, the half space cooling model can predict will for the temperature of the oceanic plate.
 Follow by David and Lister,1974:
 
-$T=T_m\cdot erf(\frac{z}{2\sqrt{\kappa t}})$
+$T=T_m\cdot {erf}(\frac{z}{2\sqrt{\kappa t}})$
 
-T is the temperature, $T_m$ is the mantle temperature, in this model the temperature is 1330,
-z is the depth from surface and $\kappa$ is the thermal conductivity ceoficient, that is, $10^{-6}$ in this study.
-t is the lithosphere age in Myr.
+$T$ is the temperature, $T_m$ is the mantle temperature, in this model the temperature is 1330,
+$z$ is the depth from surface and $\kappa$ is the thermal conductivity ceoficient, that is, $10^{-6}$ in this study.
+$t$ is the lithosphere age in Myr.
 
 
 For continental lithosphere, the thermal condition is defined in linearly.

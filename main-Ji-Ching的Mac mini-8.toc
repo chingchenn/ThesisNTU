@@ -4,9 +4,9 @@
 \contentsline {chapter}{摘要}{v}{chapter*.3}%
 \contentsline {chapter}{Abstract}{vii}{chapter*.4}%
 \contentsline {chapter}{Contents}{ix}{section*.5}%
-\contentsline {chapter}{List of Figures}{xiii}{section*.6}%
-\contentsline {chapter}{List of Tables}{xv}{section*.7}%
-\contentsline {chapter}{Denotation}{xvii}{chapter*.8}%
+\contentsline {chapter}{List of Figures}{xi}{section*.6}%
+\contentsline {chapter}{List of Tables}{xiii}{section*.7}%
+\contentsline {chapter}{Denotation}{xv}{chapter*.8}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Review of flat subduction numerical models}{3}{section.1.2}%
@@ -30,27 +30,12 @@
 \contentsline {section}{\numberline {2.7}Boundary condition}{14}{section.2.7}%
 \contentsline {subsection}{\numberline {2.7.1}Kinematic boundary condition}{14}{subsection.2.7.1}%
 \contentsline {subsection}{\numberline {2.7.2}Thermal boundary condition}{14}{subsection.2.7.2}%
-\contentsline {chapter}{\numberline {3}Numerical model result}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Reference model}{16}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Flat subduction definition}{16}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Oceanic lithosphere}{16}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Oceanic plateau}{16}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Basalt transformation}{16}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Continental lithosphere}{16}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Thickness}{16}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Thermal state}{16}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}lithosphere strength}{16}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Sublithosphere mantle}{16}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Viscosity}{16}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Serpentinization}{16}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}410 discontinuity}{16}{subsection.3.5.3}%
-\contentsline {chapter}{\numberline {4}Discussion}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Type of flat subduction}{17}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Magma sources of flat subduction}{17}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Serpentinization and observation}{17}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Flat subduction in Mexico}{17}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Flat subduction in Chile}{17}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Shallow angle subduction}{17}{section.4.6}%
+\contentsline {chapter}{\numberline {3}中文測試}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}史記}{15}{section.3.1}%
+\contentsline {section}{\numberline {3.2}山海經}{16}{section.3.2}%
+\contentsline {chapter}{\numberline {4}英文測試}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}出師表}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}短歌行}{17}{section.4.2}%
 \contentsline {chapter}{References}{19}{section*.10}%
 \contentsline {chapter}{Appendix\nobreakspace {}{A}\nobreakspace {}---\nobreakspace {}Introduction}{19}{section*.12}%
 \contentsline {section}{\numberline {A.1}Introduction}{19}{section.4.1}%
