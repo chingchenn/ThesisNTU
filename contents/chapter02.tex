@@ -6,14 +6,14 @@ Since the subduction process contain slow deformation and the constrain for deep
 
 The numerical models in this study address the dynamics process of flat subduction, in which an oceanic plate subducts beneath continental plate. The goal of this work is to address the controls on subducting plate dynamics and to determine the conditions under which flat subduction may develop. 
 
-In this chapter, we introduce the method of numerical model and the initial model setup. In section 2.1, we discuss the governing equations. In section 2.2, the finite elements method will be briefly discuss. In section 2.3, we introduce the Fast Lagrangian Analysis of Continua technique. In section 2.4, the model geometry is presented. The material properties, phase transition and model boundary conditions are given in section 2.5 ,2.6 and 2.7, respectively.
+In this chapter, we introduce the method of numerical model and the initial model setup. In section 2.1, we discuss the governing equations. In section 2.2, the finite elements method will be briefly discuss. The material properties, phase transition and model boundary conditions are given in section 2.3 ,2.4 and 2.5, respectively. In section 2.6, we introduce the Fast Lagrangian Analysis of Continua technique. In section 2.7, the model geometry is presented. 
 
 \section{Governing equation}
 
 \subsection{Continuum---Conservation of mass}
 
 In geodynamics modelling, we consider major rock units as continuous geological media. The continuous description is described by field variables such as density, pressure, velocity, strain, etc. 
-The continuity can be transformed into quantitative mathenatical formalism, that is, continuity equation.
+The continuity can be transformed into quantitative mathematical formalism, that is, continuity equation.
 
 The mass conservation equation in Lagrangian form is as follow
 \begin{align}
@@ -41,7 +41,7 @@ Lagrangian material in time derivative is:
 \begin{align}
 \frac{D\rho}{Dt} \approx \frac{\Delta \rho}{\Delta t} = \frac{\rho_1-\rho_0}{\Delta t}=\frac{m}{\Delta x_1 \Delta y_1 \Delta z_1\Delta t}-\frac{m}{\Delta x_0 \Delta y_0 \Delta z_0\Delta t}
 \end{align}
-The relationship between new and old dimensions of Lagrangian volume is base on the relative movements of the volume's boundary, the displacement is equal to the velocity times duration period:
+The relationship between new and old dimensions of Lagrangian volume is base on the relative movements of the volume's boundary, the displacement is equal to the velocity times period of duration:
 \begin{align}
 \Delta x_1 = \Delta x_0+\Delta t\Delta v_x\\
 \Delta y_1 = \Delta y_0+\Delta t\Delta v_y\\
@@ -151,9 +151,6 @@ where $\rho$ is the density, $C_p$ is the heat capacity at constant pressure (is
 
 The proof of heat equation is show below:
 
-(加上heat equation的推倒
-加圖)
-
 Base on the Boussinesq approximation, the imcompressible Lagrangian form governing equations are:
 \begin{align}
 \nabla \cdot (\vec v) = 0 
@@ -230,7 +227,7 @@ In this model, the following equations are the conditional expressions of transf
 $T > 650^{\circ} C$\\
 $depth >  20 $km 
 
-The subducted sediments will turn into schist when temperature is greater than 650$^\circ$C and pressure is greater than (一個數字 算出來?)
+The subducted sediments will turn into schist when temperature is greater than 650$^\circ$C and pressure is greater than (a number)
 
 \subsection{Hydrated olivine --- Peridotite}
 
@@ -248,13 +245,13 @@ $T > 800-35\times 10^{-9}\times (depth-62)^{2\circ}C$
 \subsection{Thermal boundary condition}
 
 For oceanic lithosphere, we used half space cooling model in our model to defined the thermal condition. 
-The plate depth is proportional to the square root of oceanic lithosphere age, and therefore, the half space cooling model can predict will for the temperature of the oceanic plate.
-Follow by David and Lister,1974:
+The plate depth is proportional to the square root of oceanic lithosphere age, and therefore, the half space cooling model can predict well for the temperature of the oceanic plate.
+Follow by David and Lister, 1974(mention in Stein, 1995):
 
 $T=T_m\cdot {erf}(\frac{z}{2\sqrt{\kappa t}})$
 
-$T$ is the temperature, $T_m$ is the mantle temperature, in this model the temperature is 1330,
-$z$ is the depth from surface and $\kappa$ is the thermal conductivity ceoficient, that is, $10^{-6}$ in this study.
+$T$ is the temperature, $T_m$ is the mantle temperature, in this model the temperature is 1330 K,
+$z$ is the depth from surface in kilometer and $\kappa$ is the thermal diffusivity coefficient, that is, $10^{-6}$ in this study.
 $t$ is the lithosphere age in Myr.
 
 
@@ -263,7 +260,15 @@ For continental lithosphere, the thermal condition is defined in linearly.
 
 \section{FLAC}
 
-We used the Fast Lagrangian Analysis of Continua (FLAC) technique. FLAC is a two-dimensional, explicit finite element with Lagrangian gird of numerical program.  
+We used the Fast Lagrangian Analysis of Continua (FLAC) technique. FLAC is a two-dimensional, explicit finite element with Lagrangian gird of numerical program.
+
+What is explicit?
+
+An explicit form is any solution that is given in the form $y=y(t)$. That is, $y$ only shows up once on the ledt hand side and is only in first power. Ob the other hand, implicit form is any solution that is not in explicit form. In finite element method, explicit solution solve the acceleration. In most cases, only the diagonal elements in matrix are not equal to zero, in other words, it is simple to solve an inversion solution form inverse matrix. 
+
+Gird?
+
+
 
 \section{Initial Model}
 
