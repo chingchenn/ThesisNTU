@@ -79,7 +79,7 @@
 
 % 變數: 版面設定
 % Variables: Layouts
-\newcommand{\ntu@geometry@main}{top=3cm, bottom=2cm, left=3cm, right=3cm}
+\newcommand{\ntu@geometry@main}{top=3cm, bottom=3cm, left=3cm, right=3cm}
 \newcommand{\ntu@geometry@cover}{top=3cm, bottom=3cm, left=3cm, right=3cm}
 
 \newcommand{\ntu@tocvspace}{1em}
@@ -293,17 +293,17 @@
     name    = university@en,
   },
   college = {
-    default = {工學院},
+    default = {理學院},
   },
   college* = {
-    default = {College of Engineering},
+    default = {College of Science},
     name    = college@en,
   },
   institute = {
-    default = {工業工程學研究所},
+    default = {地質科學研究所},
   },
   institute* = {
-    default = {Institute of Industrial Engineering},
+    default = {Institute of Geosciences},
     name    = institute@en,
   },
   title = {
@@ -586,13 +586,13 @@
 
 % \titlecontents{標題名稱}[左間距]{標題格式}{標題內容}{無序號標題}{指引線與頁碼}[下間距]
 \titlecontents{chapter}[0em]                                % 修改目錄樣式
-{\addvspace{0.5em}\normalsize\bfseries\protect}
+{\addvspace{0.2em}\normalsize\bfseries\protect}
 {\fboxrule=0pt\fboxsep=0pt\framebox[\ntu@tocchaptersize][l]{\ntu@titlechaptertoc}}
 {}
 {\hfill\contentspage}
 
-\setlength{\cftbeforesecskip}{8pt}                          % 修改目錄間距
-\setlength{\cftbeforesubsecskip}{8pt}
+\setlength{\cftbeforesecskip}{3pt}                          % 修改目錄間距
+\setlength{\cftbeforesubsecskip}{3pt}
 
 \setcounter{tocdepth}{3}                                    % 設定目錄深度
 \setcounter{secnumdepth}{3}                                 % 設定編號深度
@@ -615,12 +615,14 @@
 % - before: 標題內容前增加文字
 % - after: 標題內容後增加文字
 %
-\titleformat{\chapter}                      % 設置 Chapter 格式
-{\centering\Huge\bfseries}                  % 定義 format
+\titleformat{\chapter}                    % 設置 Chapter 格式
+{\centering\Large\bfseries}                  % 定義 format
 {\ntu@titlechapter}              		    % 定義 label
 {1em}                                       % 定義 sep
 {}                                          % before
-
+\titlespacing{\chapter}{3cm}{0cm}{0cm}[3cm] %設定與周圍的距離
+\titlespacing{\section}{0cm}{0cm}{0cm}[0cm] %設定與周圍的距離
+\titlespacing{\subsection}{0cm}{0cm}{0cm}[0cm] %設定與周圍的距離
 % [圖表標題]
 %
 \setlength{\intextsep}{12bp \@plus4pt \@minus2pt}
