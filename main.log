@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.20)  18 FEB 2022 22:26
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.20)  2 AUG 2022 13:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -7,7 +7,7 @@ entering extended mode
 (./main.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (./ntuthesis.cls
-Document Class: ntuthesis 2020/05/01 v2.0 NTU Thesis Template
+Document Class: ntuthesis 2022/05/01 v2.0 NTU Thesis Template
 (/usr/local/texlive/2021/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
@@ -1224,7 +1224,14 @@ Package zhlipsum Info: Chinese dummy text "aspirin" is created. It has 66
 (zhlipsum)             paragraphs.
 
 )))
-(./main.aux)
+(./main.aux
+
+LaTeX Warning: Label `fig::Lagrangian Volume' multiply defined.
+
+
+LaTeX Warning: Label `fig::elastic' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -1433,11 +1440,11 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
 * h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
-* v-part:(T,H,B)=(85.35826pt, 702.78308pt, 56.9055pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=426.79135pt
-* \textheight=702.78308pt
+* \textheight=674.33032pt
 * \oddsidemargin=13.08827pt
 * \evensidemargin=13.08827pt
 * \topmargin=-23.91173pt
@@ -1502,27 +1509,16 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [8
 
-] (./main.toc
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [9]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [10])
+] (./main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
-
-[11]
+ [9]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [12
+ [10
 
 ] (./main.lof)
 \tf@lof=\write6
@@ -1530,31 +1526,31 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [13]
+ [11]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [14
+ [12
 
 ] (./main.lot)
 \tf@lot=\write7
 \openout7 = `main.lot'.
 
- (./front/denotation.tex
+
+(./front/denotation.tex
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [13]
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [14
+
+])
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [15]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
-
-[16
-
-])
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [17]
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [18
+ [16
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -1564,11 +1560,11 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
 * h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
-* v-part:(T,H,B)=(85.35826pt, 702.78308pt, 56.9055pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=426.79135pt
-* \textheight=702.78308pt
+* \textheight=674.33032pt
 * \oddsidemargin=13.08827pt
 * \evensidemargin=13.08827pt
 * \topmargin=-23.91173pt
@@ -1589,11 +1585,14 @@ File: ./figures//seal.pdf Graphic file (type pdf)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- (./contents/chapter01.tex
+ (./contents/chapter01ch.tex
 Chapter 1.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
-[1
+ [1
 
 
 ]
@@ -1602,7 +1601,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [2]
-Underfull \vbox (badness 1668) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
@@ -1611,14 +1610,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [4]
+ [4])
+(./contents/chapter02ch.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [5]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
 
-[5]) (./contents/chapter02.tex
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [6]
+[6]
 Chapter 2.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1628,12 +1630,16 @@ File: ./figures//seal.pdf Graphic file (type pdf)
  [7
 
 ]
-File: ./figures//momentum.pdf Graphic file (type pdf)
-<use ./figures//momentum.pdf>
+File: ./figures//eulerian_and_lagrangian.pdf Graphic file (type pdf)
+<use ./figures//eulerian_and_lagrangian.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
+ [8]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[8]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [9]
@@ -1642,10 +1648,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
+ [11]
+File: ./figures//momentum.pdf Graphic file (type pdf)
+<use ./figures//momentum.pdf>
 
-[11]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
  [12]
@@ -1653,57 +1665,84 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [13])
-(./contents/chapter03.tex
-File: ./figures//seal.pdf Graphic file (type pdf)
-<use ./figures//seal.pdf>
- [14]
-Chapter 3.
-) (./contents/chapter04.tex
+ [13]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [15
+ [14]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-]
-Overfull \vbox (131.4008pt too high) has occurred while \output is active []
-
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [15]
+File: ./figures//elasticdeformaiton.pdf Graphic file (type pdf)
+<use ./figures//elasticdeformaiton.pdf>
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
 
 [16]
-Chapter 4.
-./contents/chapter04.tex:17: Text line contains an invalid character.
-l.17 ^^P
-        This is just to test \cite{Krasnogor2004e} the cite function.
-? s
-OK, entering \scrollmode...
+File: ./figures//basalt_phase_diagram.pdf Graphic file (type pdf)
+<use ./figures//basalt_phase_diagram.pdf>
 
-Package natbib Warning: Citation `Krasnogor2004e' on page 17 undefined on input
- line 17.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-)
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [17
+ [17]
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+
+[18]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [19])
+(./contents/chapter03.tex
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [20]
+Chapter 3.
+) (./contents/chapter04.tex
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [21
 
 ]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [18
+ [22
+
+]
+Chapter 4.
+./contents/chapter04.tex:7: Text line contains an invalid character.
+l.7 ^^P
+       This is just to test \cite{Krasnogor2004e} the cite function.
+? 
+
+Package natbib Warning: Citation `Krasnogor2004e' on page 23 undefined on input
+ line 7.
+
+)
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [23]
+File: ./figures//seal.pdf Graphic file (type pdf)
+<use ./figures//seal.pdf>
+ [24
 
 ]
 No file main.bbl.
 (./back/appendix01.tex) (./back/appendix02.tex
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [19
+ [25
 
 ]
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
- [20
+ [26
 
 ])
 
@@ -1711,7 +1750,7 @@ Package natbib Warning: There were undefined citations.
 
 File: ./figures//seal.pdf Graphic file (type pdf)
 <use ./figures//seal.pdf>
-[21] (./main.aux)
+[27] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.28pt have occurred.
@@ -1719,16 +1758,25 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1797CE954D1CE1F55483F55F497605BD;9337.
+
+LaTeX Warning: There were multiply-defined labels.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 278CF23CF1383F469F4295D044676E98;6441
+(rerunfilecheck)             After:  56D989990CDC27C247279A1CE952C629;6367.
  ) 
 Here is how much of TeX's memory you used:
- 30800 strings out of 476919
- 613232 string characters out of 5821839
- 1274771 words of memory out of 5000000
- 50149 multiletter control sequences out of 15000+600000
+ 30859 strings out of 476919
+ 616065 string characters out of 5821839
+ 1275625 words of memory out of 5000000
+ 50205 multiletter control sequences out of 15000+600000
  411915 words of font info for 94 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,16n,131p,1011b,809s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,16n,131p,1011b,782s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (40 pages).
+Output written on main.pdf (44 pages).

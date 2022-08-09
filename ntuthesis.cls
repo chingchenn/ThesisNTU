@@ -18,7 +18,7 @@
 
 % 定義類別名稱與敘述
 % Define the name and description of class.
-\ProvidesClass{ntuthesis}[2020/05/01 v2.0 NTU Thesis Template]
+\ProvidesClass{ntuthesis}[2022/05/01 v2.0 NTU Thesis Template]
 
 % --------------------------------------------------
 % 02 基礎設定（Basic Settings）

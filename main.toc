@@ -4,58 +4,40 @@
 \contentsline {chapter}{摘要}{v}{chapter*.3}%
 \contentsline {chapter}{Abstract}{vii}{chapter*.4}%
 \contentsline {chapter}{Contents}{ix}{section*.5}%
-\contentsline {chapter}{List of Figures}{xiii}{section*.6}%
-\contentsline {chapter}{List of Tables}{xv}{section*.7}%
-\contentsline {chapter}{Denotation}{xvii}{chapter*.8}%
-\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {chapter}{List of Figures}{xi}{section*.6}%
+\contentsline {chapter}{List of Tables}{xiii}{section*.7}%
+\contentsline {chapter}{Denotation}{xv}{chapter*.8}%
+\contentsline {chapter}{\numberline {1}緒論}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Review of flat subduction numerical models}{3}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Movation}{5}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Geophysical observation in Cocos subduction zone}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Geophysical observation in Cocos subduction zone}{6}{section.1.4}%
 \contentsline {section}{\numberline {1.5}End}{6}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Numerical modelling method}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Governing equation}{8}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Continuum---Conservation of mass}{8}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Motion---Conservation of momentum}{9}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Heat equation --- Conservation of energy}{10}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Finite elements method}{11}{section.2.2}%
-\contentsline {section}{\numberline {2.3}FLAC}{11}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Initial Model}{11}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Rheological behavior}{11}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Phase change}{12}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Peridotite --- Serpentinite}{12}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Basalt --- Eclogite}{13}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Sediment --- Schist}{13}{subsection.2.6.3}%
-\contentsline {subsection}{\numberline {2.6.4}Hydrated olivine --- Peridotite}{14}{subsection.2.6.4}%
-\contentsline {section}{\numberline {2.7}Boundary condition}{14}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Kinematic boundary condition}{14}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Thermal boundary condition}{14}{subsection.2.7.2}%
-\contentsline {chapter}{\numberline {3}Numerical model result}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Reference model}{16}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Flat subduction definition}{16}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Oceanic lithosphere}{16}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Oceanic plateau}{16}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Basalt transformation}{16}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Continental lithosphere}{16}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Thickness}{16}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Thermal state}{16}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}lithosphere strength}{16}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Sublithosphere mantle}{16}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Viscosity}{16}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Serpentinization}{16}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}410 discontinuity}{16}{subsection.3.5.3}%
-\contentsline {chapter}{\numberline {4}Discussion}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Type of flat subduction}{17}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Magma sources of flat subduction}{17}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Serpentinization and observation}{17}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Flat subduction in Mexico}{17}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Flat subduction in Chile}{17}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Shallow angle subduction}{17}{section.4.6}%
-\contentsline {chapter}{References}{19}{section*.10}%
-\contentsline {chapter}{Appendix\nobreakspace {}{A}\nobreakspace {}---\nobreakspace {}Introduction}{19}{section*.12}%
-\contentsline {section}{\numberline {A.1}Introduction}{19}{section.4.1}%
-\contentsline {section}{\numberline {A.2}Further Introduction}{19}{section.4.2}%
-\contentsline {chapter}{Appendix\nobreakspace {}{B}\nobreakspace {}---\nobreakspace {}Introduction}{21}{section*.14}%
-\contentsline {section}{\numberline {B.1}Introduction}{21}{section.4.1}%
-\contentsline {section}{\numberline {B.2}Further Introduction}{21}{section.4.2}%
+\contentsline {subsection}{\numberline {2.1.2}Motion---Conservation of momentum}{12}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Heat equation --- Conservation of energy}{15}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Finite elements method}{15}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Rheological behavior}{15}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Phase change}{16}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Peridotite --- Serpentinite}{17}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Basalt --- Eclogite}{17}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Sediment --- Schist}{18}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Hydrated olivine --- Peridotite}{18}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Boundary condition}{19}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Kinematic boundary condition}{19}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Thermal boundary condition}{19}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}FLAC}{19}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Initial Model}{20}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Numerical model result}{21}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Discussion}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Type of flat subduction}{23}{section.4.1}%
+\contentsline {chapter}{References}{25}{section*.13}%
+\contentsline {chapter}{Appendix\nobreakspace {}{A}\nobreakspace {}---\nobreakspace {}Introduction}{25}{section*.15}%
+\contentsline {section}{\numberline {A.1}Introduction}{25}{section.4.1}%
+\contentsline {section}{\numberline {A.2}Further Introduction}{25}{section.4.2}%
+\contentsline {chapter}{Appendix\nobreakspace {}{B}\nobreakspace {}---\nobreakspace {}Introduction}{27}{section*.17}%
+\contentsline {section}{\numberline {B.1}Introduction}{27}{section.4.1}%
+\contentsline {section}{\numberline {B.2}Further Introduction}{27}{section.4.2}%
 \contentsfinish 
