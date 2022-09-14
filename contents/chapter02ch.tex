@@ -136,11 +136,11 @@ $f_g=m_gx$ 為重力。
 % $f_{xA}- f_{xF}$ are stress-related forces, from the outside of the volume on the respective boundaries A-F. 
 % $f_g=m_gx$ is the gravity force.
 \begin{align}
-f_{xA} = -\sigma_{xxA}\Delta y\Delta z\\\label{eqn:fxA}
-f_{xB} = +\sigma_{xxB}\Delta y\Delta z\\\label{eqn:fxB}
-f_{xC} = -\sigma_{xyC}\Delta x\Delta z\\\label{eqn:fxC}
-f_{xD} = +\sigma_{xyD}\Delta x\Delta z\\\label{eqn:fxD}
-f_{xE} = -\sigma_{xzE}\Delta x\Delta y\\\label{eqn:fxE}
+f_{xA} = -\sigma_{xxA}\Delta y\Delta z\label{eqn:fxA}\\
+f_{xB} = +\sigma_{xxB}\Delta y\Delta z\label{eqn:fxB}\\
+f_{xC} = -\sigma_{xyC}\Delta x\Delta z\label{eqn:fxC}\\
+f_{xD} = +\sigma_{xyD}\Delta x\Delta z\label{eqn:fxD}\\
+f_{xE} = -\sigma_{xzE}\Delta x\Delta y\label{eqn:fxE}\\
 f_{xF} = +\sigma_{xzF}\Delta x\Delta y\label{eqn:fxF}
 \end{align}
 我們將($\ref{eqn:fxA}$)-($\ref{eqn:fxF}$)帶入($\ref{eqn:Ftotal0}$)中得到:
@@ -196,7 +196,7 @@ Describe conservation of mass, conservation of momentum and conservation of ener
 由虎克定律得到彈性通式:
 
 \begin{align}
-𝜎_{𝑖𝑗}=𝑐_{𝑖𝑗𝑘𝑙} 𝜀_{𝑘𝑙}
+\sigma_{ij}=C_{ijkl} 𝜀_{kl}
 \end{align}
 假設物質具有均質性(isotropic)，則上列通式矩陣僅會有兩個獨立分量:
 
@@ -222,10 +222,10 @@ Describe conservation of mass, conservation of momentum and conservation of ener
 本研究所使用的塑性變形滿足莫爾庫倫破壞準則(Mohr-Coulomb)定義屈服應力(yield stress)的大小:
 
 \begin{align}
-    σ_{yield}=C+tan(\phi)\sigma_n \label{eqn:elastic tensor}
+    \sigma_{yield}=C+tan(\phi)\sigma_{n}\label{eqn:elastic tensor}
 \end{align}
 
-其中$C$為內聚力，$\sigma_n$為正向力，$\phi$為物質摩擦角。當破壞發生後，物質強度降低，發生應變弱化(strain weakening)，其內聚力與摩擦角皆會降低。本研究中假設破壞物質之內聚力與摩擦角會線性降低直到一飽和最小值，如圖，表示發生過破裂的區域強度變弱，使變形帶集中。本研究各物質所使用的內聚力與摩擦角見表。在應變率為0時，岩石摩擦角與內聚力分別為C0, φ0 ; 在應變率大於E_(pl,saturate)時，岩石摩擦角與內聚力分別為C1, φ1 ; 當岩石應變率在0到E_(pl,saturate)之間時，岩石摩擦角與內聚力的值會隨應變率在(C0, φ0)與(C1, φ1)之間線性遞減。
+其中$C$為內聚力，$\sigma_n$為正向力，$\phi$為物質摩擦角。當破壞發生後，物質強度降低，發生應變弱化(strain weakening)，其內聚力與摩擦角皆會降低。本研究中假設破壞物質之內聚力與摩擦角會線性降低直到一飽和最小值，如圖，表示發生過破裂的區域強度變弱，使變形帶集中。本研究各物質所使用的內聚力與摩擦角見表。在應變率為$0$時，岩石摩擦角與內聚力分別為$C0$, $\phi0$ ; 在應變率大於$E_(pl,saturate)$時，岩石摩擦角與內聚力分別為$C1$, $\phi1$ ; 當岩石應變率在0到$E_(pl,saturate)$之間時，岩石摩擦角與內聚力的值會隨應變率在($C0$, $\phi0$)與($C1$, $\phi1$)之間線性遞減。
 
 
 當溫度較高，材料強度相對進地表較低，以黏彈性(visco-elastic)變形為主。我們使用實驗結果所得的位錯蠕變定律(dislocation creep laws)定義岩石黏滯度(Chen and Morgan, 1990)：
@@ -234,13 +234,12 @@ Describe conservation of mass, conservation of momentum and conservation of ener
    \eta=\frac{1}{4}(\frac{4}{3A})^{\frac{1}{n}} \dot\varepsilon_{II}^{\frac{1-n}{n}} exp(\frac{E}{nR(T+273)})
    \label{eqn:viscousity}
 \end{align}
-η為黏滯度，ε ̇為應變率，ε ̇_II為應變率張量矩陣的第二不變量，n為應力冪數(stress exponent)，A為材料的指數前因子(viscosity pre-exponent)，T為攝氏溫度，E為活化能(activation energy)，R為氣體常數(universal gas constant)。由於黏滯度會隨溫度升高而降低，我們施加一臨界黏滯度最小值至$10^20 Pa∙s$，以防止黏滯度過低導致計算量過大Gurnis et al. 2004已經表明臨界黏滯度為1020 Pa∙s足夠且不影響岩石圈動力學表現。黏彈性應力與黏滯度、應變率成正比，其計算方式如下：	
+$\eta$為黏滯度，$\cdot\varepsilon$為應變率，$\cdot\varepsilon_{II}$為應變率張量矩陣的第二不變量，$n$為應力冪數(stress exponent)，$A$為材料的指數前因子(viscosity pre-exponent)，$T$為攝氏溫度，$E$為活化能(activation energy)，$R$為氣體常數(universal gas constant)。由於黏滯度會隨溫度升高而降低，我們施加一臨界黏滯度最小值至$10^20 Pa∙s$，以防止黏滯度過低導致計算量過大。Gurnis et al. 2004已經表明臨界黏滯度為$10^20 Pa∙s$足夠且不影響岩石圈動力學表現。黏彈性應力與黏滯度、應變率成正比，其計算方式如下：	
 
 \begin{align}
-    \simga_{vis} = 2\eta \dot\varepsilon
-    \label{eqn:viscous tensor}
+    \sigma_{vis} = 2\eta\dot\varepsilon \label{eqn:viscous tensor}
 \end{align}
-計算每個網格上的$σ_plastic$與$σ_viscous$，最終每個網格所採計的應力值為$min(σ_{plasto-viscous}, σ_{visto-elastic})$兩者之間的最小值。
+計算每個網格上的$\sigma_plastic$與$sigma_viscous$，最終每個網格所採計的應力值為$min(\sigma_{plasto-viscous}, \sigma_{visto-elastic})$兩者之間的最小值。
 \section{相變}
 
 為了模擬自然界中岩石動力學中的物理性質變化，本研究考慮部分岩石相變機制，利用岩石溫度壓力狀態當作簡單相變條件。考量相變過程可以讓隱沒模型之運動況狀以更真實的型態呈現，更能真實展現隱沒帶中力學分配過程。。
@@ -253,11 +252,8 @@ Describe conservation of mass, conservation of momentum and conservation of ener
    
 蛇紋岩化橄欖岩將隱沒帶流體帶入更深的地函中後，約在80-120 km之間再次發生脫水將水分釋放至地函中。在本研究中，在符合以下溫壓條件時(Ulmer and Trommsdorff, Nature, 1995)，該脫水作用成立，蛇紋岩化橄欖岩將相變回橄欖岩:
 \begin{align}
-550
-T> 550
-pres > 2.1 
-pres > 
-\rho C_p \frac{DT}{Dt} = -\frac{\partial q_x}{\partial x}-\frac{\partial q_y}{\partial y}-\frac{\partial q_z}{\partial z}+H_s+H_L
+T> 550 ^{\circ}\\
+P > 2.1 GPa
 \end{align}
 
 圖為橄欖岩相溫壓相圖。
@@ -279,9 +275,10 @@ Figure below is the mafic rocks phase diagram.
 
 Once sediment undergo higher pressure, the compression process and mataphase(變質作用)process occur.
 In this model, the following equations are the conditional expressions of transformation process of sediment to schist.
-
-$T > 650^{\circ} C$\\
-$depth >  20 $km 
+\begin{align}
+T > 650^{\circ} C\\
+depth >  20 km 
+\end{align}
 
 The subducted sediments will turn into schist when temperature is greater than 650$^\circ$C and pressure is greater than (a number)
 
@@ -304,7 +301,7 @@ $T > 800-35\times 10^{-9}\times (depth-62)^{2\circ}C$
 \subsection{Thermal boundary condition}
 本研究中海洋岩石圈溫度構造使用半空間冷卻模型(half space cooling model)，海洋岩石圈厚度與岩石圈年紀之開根號呈正比。由 David and Lister, 1974提出:
 \begin{align}
-$T=T_m\cdot {erf}(\frac{z}{2\sqrt{\kappa t}})$
+T=T_m\cdot {erf}(\frac{z}{2\sqrt{\kappa t}})
 \end{align}
 $T$ 是溫度，$T_m$ 是地函溫度，在本研究中使用1603K。
 $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在本研究中使用$10^{-6}$。$t$ 是海洋岩石圈年紀，單位是秒。
@@ -338,7 +335,7 @@ S = -k\nabla z \label{eq: S}
 \end{align}
 其中$k$為正比係數。並且由於物質永遠守恆，在滿足守恆公式的假設下，物質質量不隨時間變化，令物質質量與時間的關係式：
 \begin{align}
-\rho\fracpartial z}{\partial t}\label{eq:rho}
+\rho\frac{\partial z}{\partial t}\label{eq:rho}
 \end{align}
 
 質量隨時間的變化會等同於物質在空間中的通量，因此式($\ref{eq: S}$) 與式($\ref{eq:rho}$) 的關係如下:q 
