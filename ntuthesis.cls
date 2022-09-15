@@ -936,7 +936,7 @@
 % 設定行距
 % 1.2：1.5 倍行距
 % 1.6：2.0 倍行距
-\setstretch{1.6}
+\setstretch{1.2}
 
 % 套用翻譯
 \renewcommand{\figurename}{\ntu@figurename}
