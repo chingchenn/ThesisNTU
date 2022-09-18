@@ -3,27 +3,43 @@
 \chapter{Numerical modelling method}
 
 
-計算機模擬是在計算機上執行數學建模的過程，被用來預測物理系統與現實世界的行為與結果。透過計算機模擬可以在成本較少的狀態下實現結果的推斷，量化模型實現後的不確定性，因此，計算機模擬已經大量被運用在社會科學、醫療科學、工程學與自然科學上。
+地球動力學為探討地球內部的動力過程，以及地球內部物質受力後所發生的變形作用，因此其所牽扯的運動狀態複雜，
 
-自板塊構造學說被提出以來，實現動態地球的隱沒帶無論在巨觀尺度下構造的演化，界觀尺度下岩石的變形狀態或微觀尺度下礦物的排列與物質置換皆是人類致力於研究的目標。由於隱沒過程牽扯到緩慢的岩石力學變形，並且目前人類對於深部岩石圈的演化過程以及深部的地質作用(例如相變、脫水與部分熔融)尚未完全了解，目前有多種方法被用以探討隱沒帶中內部機制。其中，地質建模與模擬是探討地球內部演化常見的方法之一，常見的有沙箱模型與數值模型等。在地球動力學建模中，我們將岩石單元視為地質構造上的連續介質，且岩石具有巨觀物理量，受牛頓力學所支配。由於在地質尺度上長期且緩慢的岩石變形過程可視為流體，因此地球動力學過程通常被視為流體力學的展現。描述流體力學現象的數學式共有三大守恆定律，分別為質量守恆、動量守恆與能量守恆。描述連續介質特性的方程式
+在本研究的數值模型中，地球動力學所牽扯的運動過程複雜，不適用單純的質點或剛體運動，需要使用連續體力學(Continuum mechanics)的物理概念描述岩石的動力與變形行為。
+在模型中將岩石單元視為地質構造上的連續介質(Continuum meduium)，岩石具有巨觀物理量，受牛頓力學所支配，系統中的總力除了質點運動中所包含的外力(external force)之外，還需要考慮系統的內部作用力(internal force)。
+連續介質特性描述可被用於岩石的密度、壓力、速度、應變等不同維度物理的場變量(field variables)。
+由於在地質尺度上長期且緩慢的岩石變形過程可視為流體，因此地球動力學模型在不同尺度上部分可視為流體力學的展現。
+而流體力學的數學式共有三大守恆定律，分別為質量守恆、動量守恆與能量守恆。
+該三大守恆定律可寫成偏微分方程式的形式，同時也是連續方程式，此時因偏微分方程式之解析解多半不存在，僅能利用數值近似方法求得最佳解。
+本研究利用數值模擬的方法以解決平坦隱沒的動力學過程，其中，海洋岩石圈隱沒至大陸岩石圈之下。
+本研究的目的為探討平坦隱沒形成的條件以及演化發育過程。
+在本章節中會先介紹數值模擬的計算方式以及模型中的假設，接著說明初始模型的設定。
 
-該三大守恆定律可寫成偏微分方程式的形式，此時因偏微分方程式之解析解多半不存在，僅能利用數值近似方法求得最佳解。地球動力學上的數值模擬為利用數值方法與流體力學方程式求解的模擬方法，是研究地球內部演化過程的重要工具。
+\section{FLAC}
 
-本研究利用數值模擬的方法以解決平坦隱沒的動力學過程，其中，海洋岩石圈隱沒至大陸岩石圈之下。本研究的目的為探討平坦隱沒形成的條件以及演化發育過程。在本章節中會先介紹數值模擬的計算方式以及模型中的假設，接著說明初始模型的設定。
+本研究使用Fast Lagrangian Analysis of Continua (FLAC，快速拉格朗日連續體分析) 技術，最早是由\citealp{cundall1989numerical}開發的二維顯性(explicit)有限差分(Finite Difference Method, FDM)數值分析軟體。爾後由\citealp{Lavier2000}改良，適用於模擬地球動力與地球內部變形。FLAC使用拉格朗日描述法(Lagrangian formulation)與非均值網格(structured non-uniform mesh)，假設物質不可壓縮情況下並滿足boussinesq approximation求解主控方程式。
+每個時間段上求解每個節點(node)的運動方程式，算出每個節點上所受到的力，計算出新的速度與位移，進而推算節點應變，再藉由岩石流變學物性方程式(constitutive equation)得到節點的應力，作為下一時間的初始作用力，流程見圖\ref{fig::FLAC_method}。
+
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=6in]{FLAC_method.png}
+    \caption{FLAC 程式運算流程圖
+    }
+    \label{fig::FLAC_method}
+\end{figure*}
 
 \section{主控方程式}
 
 \subsection{質量守恆}
 
-在地球動力學建模中，我們將岩石單元視為地質構造上是連續介質，且岩石具有巨觀物理量。練續性的描述被用於岩石的密度、壓力、速度、應變等不同維度物理的場變量(field variables)。連續性可視為定量的數學形式，即連續方程式。
-
-其中，拉格朗日的質量守恆方程式由下式所表示:
+拉格朗日描述法的質量守恆方程式如下:
 
 \begin{align}
 \frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho \frac{\partial D_{vi}}{\partial t} 
+\label{eqn:MASS_Lagrangian}
 \end{align}
 
-在流體力學中，描述流場性質的方法主要有兩種，第一為尤拉描述法，第二為拉格朗日描述法。在本研究中所使用的描述方法為拉格朗日法。每個拉格朗日點被嚴格的連到一個單一的物質點上，並且會隨著該點移動。因此，同一個質點總是在同一格座標上，與時間無關。
+在本研究中，FLAC所使用的描述方法為拉格朗日描述法。每個拉格朗日點被嚴格的連到一個單一的物質點上，並且會隨著該點移動。因此，同一個質點總是在同一格座標上，與時間無關。
 
 \begin{figure*}[ht!]
     \centering
@@ -32,7 +48,7 @@
     \label{fig::Lagrangian Volume}
 \end{figure*}
 
-公式(2.1)的證明如下:
+式\ref{eqn:MASS_Lafrangian}的證明如下:
 
 由於拉格朗日描述法中同樣的物質點永遠在相同的位置上，因此拉格朗日網格的質量永遠相同，但網格體積會因網格內在膨脹與收縮作用而隨時間改變。令一拉格往日網格體積為$V_0$，其初始平均密度$\rho_0$為:
 
@@ -190,7 +206,9 @@ Describe conservation of mass, conservation of momentum and conservation of ener
 
 \section{岩石流變學}
 
-在近地表區域，岩石處於相對較低溫的環境，因此地球岩石圈由脆性變形(brittle deformation)所主導，包含低壓下的彈性變形(elastic deformation)與高壓下的塑性變形(plastic deformation)。而在地球內部，岩石因周遭溫度隨深度增加而表現出不可逆的黏性變形(viscous deformation)。因此，若地球動力學模型需同時考慮廣泛的岩石變形特性時，則模型流變學應包含彈-塑-黏性(elasto-visco-plastic)變形。
+在近地表區域，岩石處於相對較低溫的環境，因此地球岩石圈表層由脆性變形(brittle deformation)所主導，包含低壓下的彈性變形(elastic deformation)與高壓下的塑性變形(plastic deformation)。
+而在地球岩石圈深處到地球內部，岩石因周遭溫度隨深度增加而表現出不可逆的黏性變形(viscous deformation)。
+因此，若地球動力學模型需同時考慮廣泛的岩石變形特性時，則模型流變學應同時包含彈-塑-黏性(elasto-visco-plastic)變形。
 
 彈性流變假設物質所承受的應力與其應變呈正比，可以是虎克定律的展現。彈性變形很重要的精隨為其變形是可逆的，若施加在彈性物質上的應力被移除，其變形量會變回零。
 由虎克定律得到彈性通式:
@@ -211,13 +229,6 @@ Describe conservation of mass, conservation of momentum and conservation of ener
 \end{align}
 
 第二拉梅參數(Lamé's second parameter, $\lambda_2$)等同於剪彈性系數(shear modulus, $\mu$)。
-
-\begin{figure*}[ht!]
-    \centering
-    \includegraphics[width=3in]{elasticdeformaiton.pdf}
-    \caption{ Elastic deformation }
-    \label{fig::elastic}
-\end{figure*}
 
 本研究所使用的塑性變形滿足莫爾庫倫破壞準則(Mohr-Coulomb)定義屈服應力(yield stress)的大小:
 
@@ -308,20 +319,6 @@ $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在�
 
 大陸板塊的溫度構造有雙層構造與單層構造之區別。在靠近海溝的大陸岩石圈為雙層構造，近地表每公里20度溫度梯度，到45公里深之後溫度梯度為每公里6度，此溫度條件建立在Meana et al., 2005墨西哥區域溫度模型。遠離海溝測的大陸地溫梯度則是單層構造，以岩石圈底部深度作為參考，從地表0度到岩石圈底部1330度中間進行線性內插，僅含單一地溫梯度。不同構造區溫度隨深度變化圖見圖2-2。熱量傳遞在岩石圈以傳導為主，溫度變化極大，然而在軟流圈，熱量傳遞以對流為主，因此整個軟流圈至地幔地核邊界(core mantle boundary)的溫度皆維持地幔絕熱溫度，僅存在因密度變化所造成之溫度梯度，因此我們將岩石圈底部溫度固定為地幔絕熱溫度1330度。
 
-
-\section{FLAC}
-
-本研究使用Fast Lagrangian Analysis of Continua (FLAC，快速拉格朗日連續體分析) 技術，是Lavier 2000 發展的數值模型，適用於模擬地球動力與地球內部變形。FLAC 是二維顯性有限元素法的數值模型程式，在每個時間段上求解每個節點(node) 的運動方程式，算出每個節點上所受到的力計算出新的速度與位移，進
-而推算節點應變，再藉由物性方程式(constitutive equation) 得到節點的應力，作為下一時間的初始作用力。
-
-We used the Fast Lagrangian Analysis of Continua (FLAC) technique. FLAC is a two-dimensional, explicit finite element with Lagrangian gird of numerical program.
-
-What is explicit?
-
-An explicit form is any solution that is given in the form $y=y(t)$. That is, $y$ only shows up once on the ledt hand side and is only in first power. Ob the other hand, implicit form is any solution that is not in explicit form. In finite element method, explicit solution solve the acceleration. In most cases, only the diagonal elements in matrix are not equal to zero, in other words, it is simple to solve an inversion solution form inverse matrix. 
-
-Gird?
-
 \section{地表侵蝕}
 地表地形演化與板塊構造活動有高度相關，在本研究模型中利用較簡單的方式模擬地形演化過程，包含侵蝕與沈積物堆積作用，我們使用一維擴散方程式控制侵蝕與堆積作用的速率，最早由Culling, 1960 所提出，其方程式如下:
 
@@ -352,4 +349,4 @@ S = -k\nabla z \label{eq: S}
 \frac{\partial z}{\partial t} = \kappa\nabla^2 z\label{eq:erosion4}
 \end{align}
 
-\section{初始模型}
+\section{岩漿參數}
