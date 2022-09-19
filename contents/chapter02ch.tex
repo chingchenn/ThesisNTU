@@ -5,6 +5,10 @@
 
 地球動力學為探討地球內部的動力過程，以及地球內部物質受力後所發生的變形作用，因此其所牽扯的運動狀態複雜，
 
+
+地球動力學的研究主要涉及發生在地球表面以下的過程。地球上最深的鑽井資料為12公里(\citealp{ganchin1998seismic})，而地震學為目前最常見對地球深部構造的探勘方法。然而最早的地震學發展始於19世紀末，其所觀測得之構造在地質時間尺度上只能被視為瞬間狀態，無法代表地球內部過去的構造狀態。地質學藉由地表觀察，可得知過去地表上經歷的地質事件，可間接獲得當時的動力狀態，不過隨著時間推移，可用的岩石紀錄越來越少，並且地質資料並無法有效代表地球內部的動力過程。為了彌補地球動力學中有限的數據量，地質建模與模擬是探討地球內部演化常見的方法之一，例如沙箱模擬與計算機模型等。
+
+
 在本研究的數值模型中，地球動力學所牽扯的運動過程複雜，不適用單純的質點或剛體運動，需要使用連續體力學(Continuum mechanics)的物理概念描述岩石的動力與變形行為。
 在模型中將岩石單元視為地質構造上的連續介質(Continuum meduium)，岩石具有巨觀物理量，受牛頓力學所支配，系統中的總力除了質點運動中所包含的外力(external force)之外，還需要考慮系統的內部作用力(internal force)。
 連續介質特性描述可被用於岩石的密度、壓力、速度、應變等不同維度物理的場變量(field variables)。
@@ -94,7 +98,14 @@ K_2=(1+\Delta t\frac{\Delta v_x}{\Delta x_0})(1+\Delta t\frac{\Delta v_y}{\Delta
 \frac{D\rho}{Dt}+\rho div(\vec v) = 0 \label{eqn:Lagrangian continuity}
 \end{align}
 
-岩石在移動與靜止的情況下有不同的條件可以大致滿足不可壓縮流假設，即物質在流動時密度不隨時間變化。當物質移動時之馬赫數(Mach number，即流體速度與音速之比值。)小於0.3，物質移動所造成的體積變化可忽略不計，此時不可壓縮流成立。然而地球內部壓力極高，彈性物質在靜止狀態下可能會在對抗壓力的同時體積縮小，密度變大，此時不滿足不可壓縮流，因此在地球動力學計算中，需要確保在同等深度下物質之體彈性係數遠大於壓式時，不可壓縮流之假設成立。在拉格朗日坐標系底下，物質流動密度不改變等同體積不改變。可表示成:
+在數值模型中，主控方程式可以透過理想假設讓運算更為簡化，以下將介紹不可壓縮流(incompressible flow)與包辛尼斯克近似(Boussinesq approximation)。
+不可壓縮流(incompressible flow)是一種簡化流體特性的物理假設，表示物質在流動時，密度不隨時間變化。
+在一大氣壓下，移動中的物質若滿足馬赫數(Mach number，即流體速度與音速之比值。)小於0.3，則物質移動所造成的體積變化可忽略不計，此時不可壓縮流成立。
+值得一提的是，地球內部的岩石承受極高壓力，彈性物質在靜止狀態下可能會在對抗壓力的同時體積縮小，密度變大，此時不可壓縮流假設並不成立。
+因此如果要滿足不可壓縮流的假設，體彈性係數(Bulk modulus)需要遠大於壓力。
+圖中顯示地球內部壓力與體彈性係數隨身度變化，在大約660公里深以上壓力與體彈性係數的比值夠大，可以視為不可壓縮流()。
+
+在拉格朗日坐標系底下，密度變化等同體積變化，不改變等同體積不改變。可表示成:
 
 \begin{align}
 \frac{D\rho}{Dt} = 0 \label{eqn:imcompressible}
@@ -102,31 +113,43 @@ K_2=(1+\Delta t\frac{\Delta v_x}{\Delta x_0})(1+\Delta t\frac{\Delta v_y}{\Delta
 
 將$\ref{eqn:imcompressible}$帶入$\ref{eqn:Lagrangian continuity}$中得到:
 \begin{align}
-\rho div(\vec v) = 0
+\rho \nabla\cdot(\vec v) = 0
 \end{align}
 因$\rho$ 不等於0，因此:
 \begin{align}
-div(\vec v) = 0 
+\nabla\cdot(\vec v) = 0 \label{eqn:continuity final}
 \end{align}
 
-不可壓縮流之假設可以簡化主控方程式，讓計算更為方便。
 
-Boussinesq approximation 將密度拆成兩個部分，一部分只跟深度有關，與時間無關，另一部分是剩下的部分。通常剩下的那部分會小於第一部分。而如果密度差小於與深度有關的密度，則可以把密度簡化為與深度有關的密度。所有主控方程式中，唯一無法近似的密度項是浮力的密度項。
+包辛尼斯克近似則是假設密度在所有運動方程式中皆為常數$\rho_0$，唯一無法近似的密度項是動量方程式中的浮力密度項。
+該近似適用於密度變化不大的流體運動，因此通常是不可壓縮流。
+需注意的是，在包辛尼斯克近似成立的情況下，絕熱溫度梯度(adiabatic temperature gradient)不存在，考慮絕熱溫度梯度存在時稱為廣義包辛尼斯克近似(extended Boussinesq approximation)。
+在不可壓縮流中提及密度變化與體彈性係數有關，當體彈性係數為無限大，則彈性壓縮極小，密度變化趨近於零。
+在等滳條件下體彈性係數的定義:
+\begin{align}
+K_S = -V(\frac{\partial P}{\partial V})_s = \rho(\frac{\partial P}{\partial \rho})_s
+\end{align}
+此時
+\begin{align}
+\frac{P}{K} = \frac{\Delta \rho}{\rho}
+\end{align}
+
+
+不可壓縮流假設與包辛尼斯克近似可以簡化主控方程式，讓計算更為快速方便。
 
 \begin{align}
 \rho (T) = \rho_0[1-\alpha (T-T_0)] 
 \end{align}
-where $\rho_0$ is the reference density at temperature $T_0$ and $\alpha$ is the volumetric thermal expansion coefficient. The boussinesq approximation also represent the incompressible condition, which mean the density of material points does no change with time. 
-\begin{align}
-\nabla \cdot (\vec v) = 0 \label{eqn:continuity final}
-\end{align}
+其中 $\rho_0$ 是當溫度為$T_0$時的參考密度，$\alpha$是體積熱膨脹係數。
+
 式$\ref{eqn:continuity final}$ 是本研究中所使用的質量守恆方程式。
 
 \subsection{動量守恆}
 
 
 % 我們所使用之運動方程式為Navier-Stokes equations，
-地球內部的動力包含了介質所受之外力與內力力平衡的結果，並且在物質受力後產生變形。我們在這裡使用動量守恆方程式將力與變形聯繫，使用牛頓第二運動定律。
+地球內部的動力包含了介質所受之外力與內力力平衡的結果，並且在物質受力後產生變形。
+在數值計算中利用動量守恆方程式將力與變形聯繫，使用牛頓第二運動定律。
 \begin{align}
 f=ma
 \end{align}
@@ -138,7 +161,7 @@ $f$ 為作用在物質上的作用力，$m$為物質的質量。本研究所使�
     \centering
     \includegraphics[width=4in]{momentum.pdf}
     \caption{ Lagrangian elementary Volume considered for the derivation of the respective form of x-momentum equation.}
-    \label{fig::Lagrangian Volume}
+    \label{fig::Lagrangian Volume Momentum}
 \end{figure*}
 利用計算作用於一小拉格朗日體積上之淨力(net forces)可證明$\ref{eqn:momentum Lagrangian}$:
 
@@ -159,7 +182,7 @@ f_{xD} = +\sigma_{xyD}\Delta x\Delta z\label{eqn:fxD}\\
 f_{xE} = -\sigma_{xzE}\Delta x\Delta y\label{eqn:fxE}\\
 f_{xF} = +\sigma_{xzF}\Delta x\Delta y\label{eqn:fxF}
 \end{align}
-我們將($\ref{eqn:fxA}$)-($\ref{eqn:fxF}$)帶入($\ref{eqn:Ftotal0}$)中得到:
+將($\ref{eqn:fxA}$)-($\ref{eqn:fxF}$)帶入($\ref{eqn:Ftotal0}$)中得到:
 \begin{align}
 (\sigma_{xxB}-\sigma_{xxA})\Delta y\Delta z+(\sigma_{xyD}-\sigma_{xyC})\Delta x\Delta z+(\sigma_{xzF}-\sigma_{xzE})\Delta x\Delta y+mg_x = ma_x 
 \end{align}
@@ -167,7 +190,7 @@ f_{xF} = +\sigma_{xzF}\Delta x\Delta y\label{eqn:fxF}
 \begin{align}
 V=\Delta x\Delta y\Delta z
 \end{align}
-我們得到:
+得到:
 \begin{align}
 \frac{(\sigma_{xxB}-\sigma_{xxA})\Delta y\Delta z}{V}+\frac{(\sigma_{xyD}-\sigma_{xyC})\Delta x\Delta z}{V}+\frac{(\sigma_{xzF}-\sigma_{xzE})\Delta x\Delta y}{V}+\frac{m}{V}g_x=\frac{m}{V}a_x
 \end{align}
@@ -175,7 +198,7 @@ V=\Delta x\Delta y\Delta z
 \begin{align}
 \frac{\Delta\sigma_{xx}}{\Delta x}+\frac{\Delta\sigma_{xy}}{\Delta y}+\frac{\Delta\sigma_{xz}}{\Delta z}+\rho g_x = \rho a_x
 \end{align}
-While the differences of the respective stresses components all tend to zero, we obtain:
+當各個應力分量的差異趨近於零，可獲得
 \begin{align}
 \frac{\partial\sigma_{xx}}{\partial x}+\frac{\partial\sigma_{xy}}{\partial y}+\frac{\partial\sigma_{xz}}{\partial z}+\rho g_x = \rho a_x
 \end{align}
@@ -185,26 +208,24 @@ While the differences of the respective stresses components all tend to zero, we
 \end{align}
 其中 $u$ 是位移量。
 \subsection{能量守恆}
+為了描述一連續體中的能量平衡狀態，使用溫度方程式表示能量的進出。拉格朗日描述法下的能量守恆方程式表示如下:
 
-To describe the balance of energy in a continuum material, heat equation is apply to measure the temperature change. The heat equation sloved the heat transport and porvided the temperature field. Below is the heat equation in Lagrangian form :
 \begin{align}
 \rho C_p \frac{DT}{Dt} = -\frac{\partial q_x}{\partial x}-\frac{\partial q_y}{\partial y}-\frac{\partial q_z}{\partial z}+H_s+H_L
 \end{align}
 
-where $\rho$ is the density, $C_p$ is the heat capacity at constant pressure (isobaric heat capacity), $H_s$ is shear heating and $H_L$ is the latent heat production.
+其中$\rho$是密度，$C_p$是等壓比熱容量，$H_s$是摩擦熱，$H_L$是潛熱。
 
-The proof of heat equation is show below:
-
-Base on the Boussinesq approximation, the imcompressible Lagrangian form governing equations are:
+因此在滿足包辛尼斯克近似的拉格朗日座標系下不可壓縮的能量守恆方程式為
 \begin{align}
 \nabla \cdot (\vec v) = 0 
 \frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i = \rho \frac{\partial D_{vi}}{\partial t}
 \rho C_p \frac{DT}{Dt} = -\frac{\partial q_x}{\partial x}-\frac{\partial q_y}{\partial y}-\frac{\partial q_z}{\partial z}+H_s+H_L
 \end{align}
 
-Describe conservation of mass, conservation of momentum and conservation of energy, respectively.
-
 \section{岩石流變學}
+主控方程式包含七個方程式與十個未知數，因此求解過程需要額外方程式。
+岩石的流變學由物性方程式所表示，不同的岩石具有不同物理性質。
 
 在近地表區域，岩石處於相對較低溫的環境，因此地球岩石圈表層由脆性變形(brittle deformation)所主導，包含低壓下的彈性變形(elastic deformation)與高壓下的塑性變形(plastic deformation)。
 而在地球岩石圈深處到地球內部，岩石因周遭溫度隨深度增加而表現出不可逆的黏性變形(viscous deformation)。
@@ -219,7 +240,7 @@ Describe conservation of mass, conservation of momentum and conservation of ener
 假設物質具有均質性(isotropic)，則上列通式矩陣僅會有兩個獨立分量:
 
 \begin{align}
-    σ_{ij}=λ_1 ε_{kk} δ_{ij}+2 λ_2 ε_{ij}=Kε_{kk} δ_{ij}+2 \mu ε_{ij}^{dev} \label{eqn:elastic tensor}
+    \sigma_{ij}=\lambda_1 ε_{kk} δ_{ij}+2 λ_2 ε_{ij}=Kε_{kk} δ_{ij}+2 \mu ε_{ij}^{dev} \label{eqn:elastic tensor}
 \end{align}
 
 彈性力學所使用的拉梅參數為$\lambda_1 = \lambda_2 = 3 \times 10^{10} Pa$，其中第一拉梅參數(Lamé's first parameter, $\lambda_1$)與體彈性系數(bulk modulus, $K$)、剪彈性系數(shear modulus, $\mu$)的關係式如下:
@@ -233,19 +254,25 @@ Describe conservation of mass, conservation of momentum and conservation of ener
 本研究所使用的塑性變形滿足莫爾庫倫破壞準則(Mohr-Coulomb)定義屈服應力(yield stress)的大小:
 
 \begin{align}
-    \sigma_{yield}=C+tan(\phi)\sigma_{n}\label{eqn:elastic tensor}
+    \sigma_{yield}=C+tan(\phi)\sigma_{n}\label{eqn:plastic deformation}
 \end{align}
 
 其中$C$為內聚力，$\sigma_n$為正向力，$\phi$為物質摩擦角。當破壞發生後，物質強度降低，發生應變弱化(strain weakening)，其內聚力與摩擦角皆會降低。本研究中假設破壞物質之內聚力與摩擦角會線性降低直到一飽和最小值，如圖，表示發生過破裂的區域強度變弱，使變形帶集中。本研究各物質所使用的內聚力與摩擦角見表。在應變率為$0$時，岩石摩擦角與內聚力分別為$C0$, $\phi0$ ; 在應變率大於$E_(pl,saturate)$時，岩石摩擦角與內聚力分別為$C1$, $\phi1$ ; 當岩石應變率在0到$E_(pl,saturate)$之間時，岩石摩擦角與內聚力的值會隨應變率在($C0$, $\phi0$)與($C1$, $\phi1$)之間線性遞減。
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=3in]{Tan 2012 plastic.jpg}
+    \caption{應力弱化示意圖，摘自\citealp{Tan2012}。岩石摩擦角與內聚力的值會隨應變率在($C0$, $\phi0$)與($C1$, $\phi1$)之間線性遞減。
+    }
+    \label{}
+\end{figure*}
 
-
-當溫度較高，材料強度相對進地表較低，以黏彈性(visco-elastic)變形為主。我們使用實驗結果所得的位錯蠕變定律(dislocation creep laws)定義岩石黏滯度(Chen and Morgan, 1990)：
+當溫度較高，材料強度相對進地表較低，以黏彈性(visco-elastic)變形為主。本研究使用實驗結果所得的位錯蠕變定律(dislocation creep laws)定義岩石黏滯度(Chen and Morgan, 1990)：
 
 \begin{align}
    \eta=\frac{1}{4}(\frac{4}{3A})^{\frac{1}{n}} \dot\varepsilon_{II}^{\frac{1-n}{n}} exp(\frac{E}{nR(T+273)})
    \label{eqn:viscousity}
 \end{align}
-$\eta$為黏滯度，$\cdot\varepsilon$為應變率，$\cdot\varepsilon_{II}$為應變率張量矩陣的第二不變量，$n$為應力冪數(stress exponent)，$A$為材料的指數前因子(viscosity pre-exponent)，$T$為攝氏溫度，$E$為活化能(activation energy)，$R$為氣體常數(universal gas constant)。由於黏滯度會隨溫度升高而降低，我們施加一臨界黏滯度最小值至$10^20 Pa∙s$，以防止黏滯度過低導致計算量過大。Gurnis et al. 2004已經表明臨界黏滯度為$10^20 Pa∙s$足夠且不影響岩石圈動力學表現。黏彈性應力與黏滯度、應變率成正比，其計算方式如下：	
+$\eta$為黏滯度，$\cdot\varepsilon$為應變率，$\cdot\varepsilon_{II}$為應變率張量矩陣的第二不變量，$n$為應力冪數(stress exponent)，$A$為材料的指數前因子(viscosity pre-exponent)，$T$為攝氏溫度，$E$為活化能(activation energy)，$R$為氣體常數(universal gas constant)。由於黏滯度會隨溫度升高而降低，本研究中，施加一臨界黏滯度最小值至$10^20 Pa∙s$，以防止黏滯度過低導致計算量過大。Gurnis et al. 2004已經表明臨界黏滯度為$10^20 Pa∙s$足夠且不影響岩石圈動力學表現。黏彈性應力與黏滯度、應變率成正比，其計算方式如下：	
 
 \begin{align}
     \sigma_{vis} = 2\eta\dot\varepsilon \label{eqn:viscous tensor}
@@ -253,9 +280,9 @@ $\eta$為黏滯度，$\cdot\varepsilon$為應變率，$\cdot\varepsilon_{II}$為
 計算每個網格上的$\sigma_plastic$與$sigma_viscous$，最終每個網格所採計的應力值為$min(\sigma_{plasto-viscous}, \sigma_{visto-elastic})$兩者之間的最小值。
 \section{相變}
 
-為了模擬自然界中岩石動力學中的物理性質變化，本研究考慮部分岩石相變機制，利用岩石溫度壓力狀態當作簡單相變條件。考量相變過程可以讓隱沒模型之運動況狀以更真實的型態呈現，更能真實展現隱沒帶中力學分配過程。。
+為了模擬自然界中岩石動力學中的物理性質變化，本研究考慮部分岩石相變機制，利用岩石溫度壓力狀態當作簡單相變條件。考量相變過程可以讓隱沒模型之運動況狀以更真實的型態呈現，更能真實展現隱沒帶中力學分配過程。
 
-在本研究中，我們使用模型中的標記點追蹤物質之岩相與位置，一旦所在網格之溫度與壓力滿足標記點物質之相變條件，則會判定該標記點發生相變，其岩相轉換為相變後之新岩相。相變完成後，標記點物質所有物理性質皆會從原先岩相之性質轉變成新岩相之性質。由於相變過程不影響運動狀態，但與溫度相關，因此我們在考慮相變時，該位置溫度會將絕熱溫度梯度加回模型的溫度中。以下將一一列出模型中所考慮的相變過程:
+在本研究中，使用模型中的標記點追蹤物質之岩相與位置，一旦所在網格之溫度與壓力滿足標記點物質之相變條件，則會判定該標記點發生相變，其岩相轉換為相變後之新岩相。相變完成後，標記點物質所有物理性質皆會從原先岩相之性質轉變成新岩相之性質。由於相變過程不影響運動狀態，但與溫度相關，因此嗎行中在考慮相變時，該位置溫度會將絕熱溫度梯度加回模型的溫度中。以下將一一列出模型中所考慮的相變過程:
 
 \subsection{Peridotite --- Serpentinite}
 橄欖岩---蛇紋岩
@@ -305,9 +332,9 @@ $T > 800-35\times 10^{-9}\times (depth-62)^{2\circ}C$
 \section{邊界條件}
 
 \subsection{Kinematic boundary condition}
-在現實自然界中，板塊隱沒主要由ridge push和slab pull兩個力作用所引起水平移動，而在數值模型中，主要驅動板塊隱沒的力由邊界條件速度所控制。於本研究中所使用的板塊水平移動運動起初由運動邊界條件所決定。然而，板塊移動速度與時間的關係不應為常數，於是在模型進行一段時間後，我們讓模型邊界條件隨邊界所承受之總體力大小所決定。
+在現實自然界中，板塊隱沒主要由ridge push和slab pull兩個力作用所引起水平移動，而在數值模型中，主要驅動板塊隱沒的力由邊界條件速度所控制。於本研究中所使用的板塊水平移動運動起初由運動邊界條件所決定。然而，板塊移動速度與時間的關係不應為常數，於是在模型進行一段時間後，讓模型邊界條件隨邊界所承受之總體力大小所決定。
 
-我們會先設定左右邊界最大可施加的力臨界值大小Fc，當模型進行一萬個迴圈後，若邊界承受的力大於初始所給定的力臨界值，則會將速度下降為原先的0.9倍；反之若邊界承受的力尚未達到給定的力臨界值，則速度會增加為原先的1.1倍。此時，每一萬個迴圈，模型運動邊界條件會重新調整一次，以符合觀測結果。因此當模型運行一段時間之後，邊界所承受的力會約略相等於初始條件所設定的力臨界值。
+模型會先設定左右邊界最大可施加的力臨界值大小Fc，當模型進行一萬個迴圈後，若邊界承受的力大於初始所給定的力臨界值，則會將速度下降為原先的0.9倍；反之若邊界承受的力尚未達到給定的力臨界值，則速度會增加為原先的1.1倍。此時，每一萬個迴圈，模型運動邊界條件會重新調整一次，以符合觀測結果。因此當模型運行一段時間之後，邊界所承受的力會約略相等於初始條件所設定的力臨界值。
 
 \subsection{Thermal boundary condition}
 本研究中海洋岩石圈溫度構造使用半空間冷卻模型(half space cooling model)，海洋岩石圈厚度與岩石圈年紀之開根號呈正比。由 David and Lister, 1974提出:
@@ -317,10 +344,10 @@ T=T_m\cdot {erf}(\frac{z}{2\sqrt{\kappa t}})
 $T$ 是溫度，$T_m$ 是地函溫度，在本研究中使用1603K。
 $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在本研究中使用$10^{-6}$。$t$ 是海洋岩石圈年紀，單位是秒。
 
-大陸板塊的溫度構造有雙層構造與單層構造之區別。在靠近海溝的大陸岩石圈為雙層構造，近地表每公里20度溫度梯度，到45公里深之後溫度梯度為每公里6度，此溫度條件建立在Meana et al., 2005墨西哥區域溫度模型。遠離海溝測的大陸地溫梯度則是單層構造，以岩石圈底部深度作為參考，從地表0度到岩石圈底部1330度中間進行線性內插，僅含單一地溫梯度。不同構造區溫度隨深度變化圖見圖2-2。熱量傳遞在岩石圈以傳導為主，溫度變化極大，然而在軟流圈，熱量傳遞以對流為主，因此整個軟流圈至地幔地核邊界(core mantle boundary)的溫度皆維持地幔絕熱溫度，僅存在因密度變化所造成之溫度梯度，因此我們將岩石圈底部溫度固定為地幔絕熱溫度1330度。
+大陸板塊的溫度構造有雙層構造與單層構造之區別。在靠近海溝的大陸岩石圈為雙層構造，近地表每公里20度溫度梯度，到45公里深之後溫度梯度為每公里6度，此溫度條件建立在Meana et al., 2005墨西哥區域溫度模型。遠離海溝測的大陸地溫梯度則是單層構造，以岩石圈底部深度作為參考，從地表0度到岩石圈底部1330度中間進行線性內插，僅含單一地溫梯度。不同構造區溫度隨深度變化圖見圖2-2。熱量傳遞在岩石圈以傳導為主，溫度變化極大，然而在軟流圈，熱量傳遞以對流為主，因此整個軟流圈至地幔地核邊界(core mantle boundary)的溫度皆維持地幔絕熱溫度，僅存在因密度變化所造成之溫度梯度，因此模型中將岩石圈底部溫度固定為地幔絕熱溫度1330度。
 
 \section{地表侵蝕}
-地表地形演化與板塊構造活動有高度相關，在本研究模型中利用較簡單的方式模擬地形演化過程，包含侵蝕與沈積物堆積作用，我們使用一維擴散方程式控制侵蝕與堆積作用的速率，最早由Culling, 1960 所提出，其方程式如下:
+地表地形演化與板塊構造活動有高度相關，在本研究模型中利用較簡單的方式模擬地形演化過程，包含侵蝕與沈積物堆積作用，使用一維擴散方程式控制侵蝕與堆積作用的速率，最早由Culling, 1960 所提出，其方程式如下:
 
 \begin{align}
 \frac{\partial z}{\partial t} = \kappa \nabla^2 z \label{eq: erosion}
@@ -349,4 +376,7 @@ S = -k\nabla z \label{eq: S}
 \frac{\partial z}{\partial t} = \kappa\nabla^2 z\label{eq:erosion4}
 \end{align}
 
-\section{岩漿參數}
+\section{岩漿作用}
+本研究中，數值模型包含隱沒帶中的岩漿作用。
+隱沒板塊進入地函時，其上的沈積物與玄武岩在進入高溫高壓環境的同時發生脫水與相變。
+水分進入地函中，導致隱沒板塊上方的橄欖岩融點大幅降低，此時橄欖岩容易經過含水固相線(solidus)。
