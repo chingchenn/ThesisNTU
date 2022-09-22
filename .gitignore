@@ -21,5 +21,7 @@
 *.mtc
 *.mtc1
 *.out
-*.pdf
+main.pdf
+*.gz
 *.synctex.gz
+citation*
