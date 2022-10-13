@@ -35,7 +35,7 @@ FLAC使用拉格朗日描述法(Lagrangian formulation)與非均值網格(struct
 \end{figure*}
 單一網格中存在一定數量的標記點(marker)，紀錄岩相、位置等特徵，標記點的速度由計算獲得的速度決定，可在網格間移動。
 由於模型中的網格會根據所受的應力變形，在一段時間內若網格扭曲嚴重、網格的邊界角度過大或過小，則FLAC會重建網格，該過程稱為網格重建(remesh)。
-此時所有網格與節點會重新排列成直角長方形，並使用差分標記點上的物理量獲得新節點的物理量。
+此時所有網格與節點會重新排列，並使用差分標記點上的物理量獲得新節點的物理量。
 
 FLAC所使用的主控方程式包含質量守恆、動量守恆與能量守恆方程式。考量岩石流變學中的彈性、塑性與黏性變形行為，以下將一一介紹主控方程式與岩石流變學。
 \section{主控方程式}
@@ -132,7 +132,7 @@ q=-k\frac{\partial T}{\partial x}
 \begin{align}
     H_s = \sigma^{'}_{ij}\dot\varepsilon^{'}_{ij}
 \end{align}
-$\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為應變率(strain rate)
+$\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為軸差應變率(deviatoric strain rate)
 
 潛熱在$\ref{岩漿作用造成的溫度影響}$節中有較詳細的介紹。
 本研究中並沒有考慮放射性元素所產生的熱。
@@ -154,7 +154,7 @@ $\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為應變�
 假設物質具有均質性(isotropic)，則上列通式矩陣僅會有兩個獨立分量:
 
 \begin{align}
-    \sigma_{ij}=\lambda_1 \varepsilon_{kk} \delta_{ij}+2 \lambda_2 \varepsilon_{ij}=K\varepsilon_{kk} \delta_{ij}+2 \mu \varepsilon_{ij}^{dev} \label{eqn:elastic tensor}
+    \sigma_{ij}=\lambda_1 \varepsilon_{kk} \delta_{ij}+2 \lambda_2 \varepsilon_{ij}=K\varepsilon_{kk} \delta_{ij}+2 \mu \varepsilon_{ij}^{'} \label{eqn:elastic tensor}
 \end{align}
 
 彈性力學所使用的拉梅參數為$\lambda_1 = \lambda_2 = 3 \times 10^{10} Pa$，其中第一拉梅參數(Lamé's first parameter, $\lambda_1$)與體彈性系數(bulk modulus, $K$)、剪彈性系數(shear modulus, $\mu$)的關係式如下:
@@ -172,12 +172,12 @@ $\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為應變�
 其中$C$為內聚力，$\sigma_n$為正向力，$\phi$為物質摩擦角。
 當物質不可逆變形(破壞)發生後，達到再次破壞變形所需的應力會大幅下降，這是物質應力弱化(strain weakening)的展現，其內部內聚力與摩擦角皆會降低，伴隨著物質強度降低。
 本研究中假設已破壞物質之內聚力與摩擦角會線性降低直到一飽和最小值，如圖\ref{fig::plastic_deformatiom}，表示發生過破裂的物質強度變弱。
-岩石摩擦角與內聚力的值會隨應變率從0到$\varepsilon_(pl,saturate)$之間在($C_0$, $\phi_0$)與($C_1$, $\phi_1$)之間線性遞減，隨後達到摩擦角與內聚力的飽和最小值。
+岩石摩擦角與內聚力的值會隨應變率從0到$\varepsilon_{pl,saturate}$之間在($C_0$, $\phi_0$)與($C_1$, $\phi_1$)之間線性遞減，隨後達到摩擦角與內聚力的飽和最小值。
 本研究各物質所使用的內聚力與摩擦角見表()。
 \begin{figure*}[ht!]
     \centering
     \includegraphics[width=3in]{Tan 2012 plastic.jpg}
-    \caption[應力弱化示意圖，摘自\citealp{Tan2012}。]{應力弱化示意圖，摘自\citealp{Tan2012}。在應變率為$0$時，岩石摩擦角與內聚力分別為$C_0$, $\phi_0$ ; 在應變率大於$\varepsilon_(pl,saturate)$時，岩石摩擦角與內聚力分別為$C_1$, $\phi_1$。摩擦角與內聚力的值會隨應變率變化在($C_0$, $\phi_0$)與($C_1$, $\phi_1$)之間線性遞減。
+    \caption[應力弱化示意圖，摘自\citealp{Tan2012}。]{應力弱化示意圖，摘自\citealp{Tan2012}。在應變率為$0$時，岩石摩擦角與內聚力分別為$C_0$, $\phi_0$ ; 在應變率大於$\varepsilon_{pl,saturate}$時，岩石摩擦角與內聚力分別為$C_1$, $\phi_1$。摩擦角與內聚力的值會隨應變率變化在($C_0$, $\phi_0$)與($C_1$, $\phi_1$)之間線性遞減。
     }
     \label{fig::plastic_deformatiom}
 \end{figure*}
@@ -185,14 +185,14 @@ $\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為應變�
 當溫度較高，材料強度相對進地表較低，以黏彈性(visco-elastic)變形為主。
 本研究使用實驗結果所得的非牛頓流體位錯蠕變定律(dislocation creep laws)定義岩石黏滯度(\citealp{Chen1990})：
 \begin{align}
-   \eta=\frac{1}{4}(\frac{4}{3A})^{\frac{1}{n}} \dot\varepsilon_{II}^{\frac{1-n}{n}} exp(\frac{E}{nR(T+273)})
+   \eta=\frac{1}{4}(\frac{4}{3A})^{\frac{1}{n}} \dot\varepsilon_{II}^{' \frac{1-n}{n}} exp(\frac{E}{nR(T+273)})
    \label{eqn:viscousity}
 \end{align}
-$\eta$為黏滯度，$\dot\varepsilon$為應變率，$\dot\varepsilon_{II}$為應變率張量矩陣的第二不變量，$n$為應力冪數(stress exponent)，$A$為材料的指數前因子(viscosity pre-exponent)，$T$為攝氏溫度，$E$為活化能(activation energy)，$R$為氣體常數(universal gas constant)。
+$\eta$為黏滯度，$\dot\varepsilon^{'}$為軸差應變率張量矩陣，$\dot\varepsilon_{II}^{'}$為軸差應變率張量矩陣的第二不變量，$n$為應力冪數(stress exponent)，$A$為材料的指數前因子(viscosity pre-exponent)，$T$為攝氏溫度，$E$為活化能(activation energy)，$R$為氣體常數(universal gas constant)。
 由於黏滯度會隨溫度升高而降低，本研究中，施加一臨界黏滯度最小值至$10^{20}\ Pa\cdot s$，以防止黏滯度過低導致計算量過大。
 黏彈性應力與黏滯度、應變率成正比，其計算方式如下：	
 \begin{align}
-    \sigma_{vis} = 2\eta\dot\varepsilon \label{eqn:viscous tensor}
+    \sigma_{viscous} = 2\eta\dot\varepsilon^{'} \label{eqn:viscous tensor}
 \end{align}
 在同一網格中會分別計算每個網格上的$\sigma_{plastic}$與$\sigma_{viscous}$，最終每個網格所採計的應力值為($\sigma_{elasto-plastic}$, $\sigma_{elasto-viscous}$)兩者之間的最小值。
 最終模型的岩石強度剖面圖如圖$\ref{fig::strength}$所示。
@@ -223,8 +223,8 @@ $\eta$為黏滯度，$\dot\varepsilon$為應變率，$\dot\varepsilon_{II}$為�
 蛇紋岩化橄欖岩將隱沒帶流體帶入更深的地函中後，約在80-120公里之間再次發生脫水將水分釋放至地函楔中。
 在本研究中，在符合以下溫壓條件時(\citealp{Ulmer1995})，該脫水作用成立，蛇紋岩化橄欖岩將相變回橄欖岩:
 \begin{align}
-P > 2.1 GPa + (7.5-2.1)\times (T-730)/(500-730) \quad GPa \\
-P > 2.1 GPa + (0.2-2.1) \times (T-730)/(650-730) \quad GPa
+P > 2.1 + (7.5-2.1)\times (T-730)/(500-730) \quad GPa \\
+P > 2.1 + (0.2-2.1) \times (T-730)/(650-730) \quad GPa
 \end{align}
 其中$T$為攝氏($^\circ C$)。
 圖$\ref{fig::serpentinite_phase_diagram}$為橄欖岩相溫壓相圖。
@@ -277,7 +277,7 @@ P >  0.7 \quad GPa
 \end{figure*}
 
 
-\subsection{含水橄欖岩 --- 橄欖岩}
+\subsection{綠泥石 --- 橄欖石}
 
 模型中的地函除了普通橄欖岩與蛇紋岩之外，還有考慮含水的橄欖岩。
 本研究假設只有在含水橄欖岩上方的地函楔會發生部分熔融事件。
@@ -300,7 +300,7 @@ T > 800-35\times 10^{-9}\times (depth-62)^{2  \quad \circ}C
 \subsection{熱邊界條件}
 本研究中海洋岩石圈溫度構造使用半空間冷卻模型(half space cooling model)，海洋岩石圈厚度與岩石圈年紀之開根號呈正比。由 \citealp{davis1974}提出:
 \begin{align}
-T=T_0+T_m\cdot {erf}(\frac{z}{2\sqrt{\kappa t}}) \label{eq:Half Space Model}
+T=T_0+(T_m-T_0)\cdot {erf}(\frac{z}{2\sqrt{\kappa t}}) \label{eq:Half Space Model}
 \end{align}
 $T$ 是溫度，$T_m$ 是地函溫度，在本研究中使用1603K。
 $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在本研究中使用$10^{-6} \frac{m}{s^2}$。$t$ 是海洋岩石圈年紀。
@@ -362,7 +362,7 @@ S = -k\nabla z \label{eq:S}
     p_{melt}=\frac{(T-T_{solidus})}{500}\times 10\% \label{eq:melting}
 \end{align}
 
-其中$T_{solidus}$為該標記子深度下對應至固相線的溫度，即為熔點(melting point)，部分熔融比例在熔點與高於熔點500度法為內從0$\%$線性增加至10$\%$。
+其中$T_{solidus}$為該標記子深度下對應至固相線的溫度，即為熔點(melting point)，部分熔融比例在熔點與高於熔點500度範圍內從0$\%$線性增加至10$\%$。
 模型中容許多個部分熔融事件發生，並且會依照部分熔融比例累加。
 隨後藉由部分熔融比例計算模型中的岩漿量。
 
@@ -383,9 +383,9 @@ S = -k\nabla z \label{eq:S}
 \begin{align}
     \lambda = \lambda_0 exp(-\lambda_T\Delta T) \label{eq:Magma lambda}
 \end{align}
-式\ref{eq:Magma}中，$Pdt$項為每時間點岩漿產生量，$M(t)\lambda dt$為每時間點岩漿冷卻量(岩石結晶量)，$P$為岩漿產生速率，$\lambda$為岩漿冷卻頻率，與岩漿庫大小有關。
-式\ref{eq:Magma P}計算岩漿產生速率，$P_0$是岩漿產生常數，單位為$m^2/s$，$p_{melt}$為部分熔融百分比，$A$為發生部分熔融的面積比例。
-式\ref{eq:Magma lambda}描述岩漿冷卻參數$\lambda$，$\lambda_0$為岩漿冷卻頻率常數，$\lambda_T$是與溫度有關的冷卻係數，單位為$\frac{1}{K}$。
+式\ref{eq:Magma}中，$Pdt$項為每時間點岩漿產生量，$M(t)\lambda dt$為每時間點岩漿冷卻量(岩石結晶量)，與岩漿庫大小有關，$P$為岩漿產生速率，$\lambda$為岩漿冷卻頻率。
+式\ref{eq:Magma P}計算岩漿產生速率，$P_0$是岩漿產生常數，單位為$m^3/m/s$，$p_{melt}$來自式\ref{eq:melting}，為部分熔融百分比，$A$為發生部分熔融的面積比例。
+式\ref{eq:Magma lambda}描述岩漿冷卻參數$\lambda$，$\lambda_0$為岩漿冷卻衰變常數，$\lambda_T$是與溫度有關的冷卻係數，單位為$\frac{1}{K}$。
 
 岩漿量的變化意味著岩石的相態改變。
 物質的相態改變會導致能量的改變，此時需要考慮岩漿量變化過程中的潛熱(latent heat)以滿足能量守恆。
@@ -393,8 +393,8 @@ S = -k\nabla z \label{eq:S}
 本研究考慮在岩漿結晶過程中所釋放的潛熱(放熱)。
 模型中會計算每個時間的岩漿變化量($\Delta M$)，計算溫度變化量，使用公式如下：
 \begin{align}
-    T(t+dt) = T(t) + \frac{\Delta M L_H}{C_P}\label{eq:latent heat}
+    T(t+dt) = T(t) + M(t+dt)\lambda dt\frac{L_H}{C_p}\label{eq:latent heat}
 \end{align}
-其中$L_H$為岩漿潛熱值，在本研究參考模型中使用安山岩漿的潛熱值$3\times 10^5$ J/m(\citealp{liu2011modeling})。$C_P$為熱容。
+其中$L_H$為岩漿潛熱值，在本研究參考模型中使用安山岩漿的潛熱值$3\times 10^5$ J/kg(\citealp{liu2011modeling})。$C_p$為等壓比熱容量。
 
 當岩漿結晶後，周遭岩石的溫度因放熱而有局部升高的現象，該過程會些微影響地函楔中的黏滯度與隱沒帶動力過程。
