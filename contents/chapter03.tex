@@ -6,6 +6,8 @@
 \subsection{初始模型設定}
 納茲卡模型，本研究建立一個長1200公里、深300公里的長方形二維剖面，包含一段長425公里的海洋岩石圈與775公里的大陸板塊，在兩個板塊交界處，建立一段長度26公里傾角50度的隱沒板塊，交接處區域的溫度較高，方便隱沒帶發育。
 納茲卡板塊模型設計見圖\ref{fig::reference Nazca model}。
+海洋岩石圈年齡為40個百萬年(\citealp{muller2019})，包含2公里厚的沈積物、6公里厚的玄武岩與10公里厚的含水橄欖岩，其熱構造由第二章式\ref{eq:Half Space Model}提及的半空間冷卻模型決定。
+大陸岩石圈包含25公里厚的上部地殼(upper crust)與10公里厚的下部地殼(lower crust)，由於秘魯與智利平坦隱沒區域的大陸地溫梯度資料較少，過去研究並沒有很好的約束，因此模型使用地溫梯度以每公里9.5度線性遞增至140公里深(\citealp{perez2008})至岩石圈底部1330度。
 
 \begin{figure*}[hb]
     \centering
@@ -15,8 +17,6 @@
 \end{figure*}
 
 
-海洋岩石圈年齡為40個百萬年(\citealp{muller2019})，包含2公里厚的沈積物、6公里厚的玄武岩與10公里厚的含水橄欖岩，其熱構造由第二章式\ref{eq:Half Space Model}提及的半空間冷卻模型決定。
-大陸岩石圈包含25公里厚的上部地殼(upper crust)與10公里厚的下部地殼(lower crust)，由於秘魯與智利平坦隱沒區域的大陸地溫梯度資料較少，過去研究並沒有很好的約束，因此模型使用地溫梯度以每公里9.5度線性遞增至140公里深(\citealp{perez2008})至岩石圈底部1330度。
 由於現生地震學觀測研究提及該地區地震活動度大，且地函岩石圈速度較高、板塊脫水作用不活躍，因此納茲卡模型的蛇紋岩厚度參數設定為5公里。模型左邊界以每年6公分速率往右移動，右邊界則固定不動。本研究參考的速度來自於\citealp{o2005uncertainties}，使用印度-大西洋熱點參考座標(Indo-Atlantic hotspot reference frame)中的相對板塊運動模型計算(\citealp{schellart2008global})。
 
 模型上邊界為自由表面，而下邊界則為開放邊界，物質可自由進出。
@@ -97,27 +97,20 @@
     \caption[納茲卡參考模型於30 Myr時之結果。]{納茲卡參考模型於30 Myr時之結果。}
     \label{fig::Nazca_Ref_150}
 \end{figure*}
-
-\subsubsection{參考模型脫水位置與岩漿作用}
-
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=6in]{Ref_Nazca_melting_time_v1.pdf}
-    \caption[納茲卡參考模型岩漿作用隨時間變化]{納茲卡參考模型岩漿作用隨時間變化。}
-    \label{fig::Nazca_Ref_melting_time}
-\end{figure*}
-
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=6in]{Ref_Nazca_2Dtime_series.pdf}
-    \caption[納茲卡參考模型部分熔融、岩漿庫與玄武岩相變時空關係圖]{納茲卡參考模型部分熔融、岩漿庫與玄武岩相變時空關係圖。}
-    \label{fig::Nazca_Ref_2Dtime_series}
-\end{figure*}
-
+\newpage
+\subsubsection{納茲卡參考模型脫水位置與岩漿作用}
 上述的剖面無法精確看到島弧位置，因為整個隱沒系統產生的島弧量非常少。
 模型中發生部分熔融與海溝之距離隨時間變化如圖\ref{fig::Nazca_Ref_melting_time}a所示，。
 普通的隱沒帶火山島弧與海溝的距離決大部分落在200公里以內，然而在納茲卡參考模型中，平坦隱沒的生成促使岩漿作用位置遠離海溝，並且隨著時間逐漸往內陸移動，最大可達近500公里。
 除此之外，圖\ref{fig::Nazca_Ref_melting_time}a暗示著島弧往內陸移動速率變化，在25 Myr之前的島弧移動速率快速，斜率較大，然而在平坦隱沒發育後，島弧移動速率趨近緩和，斜率較小。
+
+
+\begin{figure*}[hb]
+    \centering
+    \includegraphics[width=6in]{Ref_Nazca_melting_time_v1.pdf}
+    \caption[納茲卡參考模型岩漿作用隨時間變化]{納茲卡參考模型岩漿作用隨時間變化，灰色底標出平坦隱沒發育後時間段。(a)部分熔融與海溝之距離隨時間變化圖，縱軸中每個點代表每次部分熔融發生位置，顏色為部分指數上的熔融比例。(b)部分熔融量隨時間變化圖，部分熔融量單位為每單位海溝產生之立方公里量中每20萬年瞬時量。顏色代表不同岩相。}
+    \label{fig::Nazca_Ref_melting_time}
+\end{figure*}
 
 部分熔融量隨時間變化如圖\ref{fig::Nazca_Ref_melting_time}b。
 在平坦隱沒發育穩定後，隱沒板塊進入大陸岩石圈內側，不斷將地函楔溫度降低。
@@ -130,9 +123,15 @@
 玄武岩相變位置在早期約50公里深，而直到30 Myr已經來到80公里深，並且有逐漸遠離海溝的趨勢。
 由於隱沒系統持續穩定隱沒，導致近海溝側溫度逐漸變冷，因此玄武岩相變也往更深且更內陸的方向移動，最終在約80公里深，橫軸座標450-460公里左右收斂。
 儘管該結果顯示玄武岩相變有逐漸延遲的現象，然而其相變深度仍然早於平坦隱沒深度，因此，可確認玄武岩相變延遲並不足以解釋平坦隱沒由尚未相變得海洋地殼所構成。
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=5.5in]{Ref_Nazca_2Dtime_series_v1.pdf}
+    \caption[納茲卡參考模型部分熔融、岩漿庫與玄武岩相變時空關係圖]{納茲卡參考模型部分熔融、岩漿庫與玄武岩相變時空關係圖。}
+    \label{fig::Nazca_Ref_2Dtime_series}
+\end{figure*}
 
+\newpage
 \subsubsection{參考模型隱沒板塊與其轉動平衡}
-
 模型中的平坦隱沒長度與深度隨時間變化見圖\ref{fig::Nazca_Ref_slab_time}a, b，平坦段深度與長度的定義已於\ref{平坦隱沒定義}提及，平坦段被定義為隱沒板塊上兩個反曲點之間的區域，平坦段長度為隱沒板塊上兩個反曲點之間的長度，而平坦深度為平坦段中的深度中位數。
 在平坦隱沒發育初期，模型進行20-30 Myr之間，因動水壓力力矩持續增加，且大陸岩石圈溫度不斷降低，岩石800度等溫線不斷往內陸移動，因此平坦隱沒段隨時間推進逐漸變長，至30 Myr達到200公里左右。儘管平坦隱沒段長度逐漸變長，然而模型中平坦隱沒段深度並沒有劇烈改變，皆落在110-120公里深。
 在大約30 Myr 後平坦隱沒長度並沒有太大變化，平坦深度約在10公里內移動，可以視為系統已達到動態平衡。
@@ -141,14 +140,14 @@
 在模型早期，角度隨時間陡降，然而在20 Myr後便沒有太大起伏，達到穩定最小值。
 直得注意的是，動水壓力力矩幾乎在同時間達到穩定大值，如圖\ref{fig::Nazca_Ref_slab_time}所示，於20 Myr後不再有顯著下降或上升。
 
-\begin{figure*}[hb]
+\begin{figure*}[h]
     \centering
     \includegraphics[width=5in]{Ref_Nazca_slab_time_v1.pdf}
     \caption[納茲卡參考模型隱沒板塊狀態隨時間變化]{納茲卡參考模型隱沒板塊狀態隨時間變化。}
     \label{fig::Nazca_Ref_slab_time}
 \end{figure*}
 
-
+\newpage
 隱沒帶中重力力矩解析解由下式定義:
 
 \begin{align}
@@ -162,7 +161,7 @@
 \begin{figure*}[hb]
     \centering
     \includegraphics[width=3in]{Torque_ana.png}
-    \caption[簡易隱沒帶二為剖面示意圖]{簡易隱沒帶二為剖面示意圖。}
+    \caption[簡易隱沒帶二為剖面示意圖]{簡易隱沒帶二為剖面示意圖。摘自\citealp{stevenson1977angle}。}
     \label{fig::Torque_ana}
 \end{figure*}
 
@@ -187,36 +186,205 @@ $U$為隱沒板塊隱沒速度，$\eta$為地函黏滯度，在穩態解析解�
 
 過去的平坦隱沒數值模型研究利用解析解的方式計算模型中的重力力矩與動水壓力力矩，然而上式\ref{eqn:Gravity Torque}至\ref{eqn:Pwedge}中假設隱沒系統已達平衡，許多參數皆為常數，並且模型假設隱沒板塊為一線性構造，有過於簡化的疑慮。
 因此本研究利用數值解的結果計算模型中不同時間點，在假設海溝為支點的情況下，獲得隱沒板塊所受的重力力矩與動水壓力力矩。
-
+本研究所使用重力力矩數值求解式如下:
 \begin{align}
     \tau_{gravity} =  g\sum ^L_{l=0} \Delta \rho(l)\ r(l)\ cos\ \alpha (l)\ V(l) 
-    \label{eqn:}
+    \label{eqn:tau_gravity}
 \end{align}
+整段隱沒板塊被切割成$l$段板塊，每段$l$皆有個別的密度差$\Delta \rho(l)$、力臂(moment arm)$r(l)\ cos\ \alpha (l)$與體積$V(l)$。
+其中$r(l)$為從支點到$l$段中心點的直線距離，$ \alpha (l)$為$r(l)$與重力的夾角，亦即$r(l)$與垂直方向上的夾角，固$r(l)\times cos\ \alpha (l)$為轉動系統中的力臂。體積$V(l)$由隱沒板塊上800度等溫線以內範圍所決定。
 
+本研究所使用動水壓力力矩數值求解式如下:
 \begin{align}
     \tau_{suction} =  \sum ^L_{l=0} [P_{sub}(l)-P_{wedge}(l)]\cdot dl\cdot r(l)\ cos\ \alpha (l)
-    \label{eqn:}
+    \label{eqn:tau_suction}
 \end{align}
+與重力力矩計算方法雷同，將隱沒板塊切割成$l$段，計算直接垂直於每段$l$上下的模型動態壓力差與$dl$段的乘積獲得作用在隱沒板塊上的壓力梯度力。
+再計算壓力梯度力與力臂的乘積便為每段$l$所受的動水壓力力矩。
 
-計算每段隱沒板塊截面上的密度差與總體積，對整段隱沒板塊積分，
-獲得隱沒板塊所受的重力力矩與動水壓力力矩
+積分每段$l$所造成的轉動重力力矩與動水壓力力矩後便可得該時間點下的總重力力矩與總動水壓力力矩，由於本研究為二維模型，單位皆為$N\cdot m/m$。
 
+模型中不同時間段的重力力矩與動水壓力力矩值如圖\ref{fig::Nazca_Ref_torque_time}所示。
+本研究模型僅包含300公里以內的板塊段，因此在模型進行至8 Myr後，隱沒板塊長度並沒有顯著拉長，導致重力力矩量值恆定。
+儘管越深處隱沒板塊段的重力力臂看似貢獻越大，然而在模型中隱沒板塊幾乎以90度方向隱沒進入更深的地函，因此實際上作用於支點的有效力臂極小。
+此外，過去討論隱沒板塊幾何動力學的文獻皆僅考慮410不連續面以上的作用力貢獻，因此本研究認為重力力矩在模型設定下的誤差不足以造成討論失真。
 
+動水壓力力矩在模型進行10 Myr後開始急速增加，配合圖\ref{fig::Nazca_Ref_51}d與圖\ref{fig::Nazca_Ref_76}d模型動水壓力剖面，與隱沒板塊上、狹窄的地函楔低黏滯度通道處所產生的低壓帶有關，配合強烈彎曲的隱沒板塊下方高壓帶，導致隱沒板塊上下壓力差極大，造就隱沒系統中重力力矩與動水壓力力矩沒有達成轉動平衡，促使平坦隱沒順利發育。
 
 \begin{figure*}[hb]
     \centering
-    \includegraphics[width=6in]{Ref_Nazca_torque_time.pdf}
+    \includegraphics[width=5in]{Ref_Nazca_torque_time.pdf}
     \caption[納茲卡參考模型重力力矩與動水壓力力矩隨時間變化]{納茲卡參考模型重力力矩與動水壓力力矩隨時間變化。}
     \label{fig::Nazca_Ref_torque_time}
 \end{figure*}
 
-至於模型產生大量東水壓力矩的原因，
-我們初步判斷可能由mantle wedge中的年制度所決定。
-若將模型的蛇紋岩厚度增加至6公里
-.....
+
+\newpage
+\section{Reference model of Cocos}
+
+科科斯板塊隱沒模型尺寸與納茲卡板塊隱沒模型相同，皆為長1200公里、深300公里的長方形二維剖面(見圖\ref{fig::reference Cocos model})，包含一段長760公里的海洋岩石圈與440公里的大陸岩石圈。
+在海洋岩石圈絕對座標650公里處建立一段長70公里傾角60度的隱沒板塊。
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=6in]{Ref_Cocos.pdf}
+    \caption[科科斯板塊隱沒模型設計與邊界條件示意圖]{科科斯板塊隱沒模型設計與邊界條件示意圖}
+    \label{fig::reference Cocos model}
+\end{figure*}
+
+海洋岩石圈年齡為15個百萬年(\citealp{Manea2011Thermal}; \citealp{muller2019})，極為年輕，包含2公里厚的沈積物與6公里厚的玄武岩。由於從地球物理觀測資料得知科克斯隱沒帶富含有大量水份，因此初始模型預設有10公里厚的綠泥岩，並且在隱沒過程中會產生30公里厚的蛇紋岩化橄欖岩。
+海洋岩石圈熱構造由第二章式\ref{eq:Half Space Model}提及的半空間冷卻模型決定。
+大陸岩石圈包含20公里厚的上部地殼(upper crust)與10公里厚的下部地殼(lower crust)，過去有不少研究討論墨西哥區域的熱構造，包含穩態模擬、地磁逆推獲得居裡溫度面與熱流資料研究。本研究主要參考\citealp{Manea2011Curie}所模擬出的岩石圈熱構造，他們結合地磁逆推與隱沒帶模型模擬，推斷在40公里以上地殼地溫梯度每公里20度，40公里以下地溫梯度每公里6度，至岩石圈底部1330度。
+模型左邊界以每年7公分速率往右移動，右邊界則固定不動。
+本研究參考的速度同樣來自於\citealp{o2005uncertainties}，與納茲卡模型相同，模型上邊界為自由表面，而下邊界則為開放邊界，物質可自由進出。
 
 
+\subsection{模型結果}
+科克斯參考模型產生一深度約35-40公里、長度約80-100公里的平坦段。
+
+在隱沒初始時期，由於海洋岩石圈極為年輕，此時海洋岩石圈等深度下溫度遠高於大陸岩石圈，因此模型早期玄武岩相變位置不斷往地函深處移動，於模型5 Myr時來到接近100公里深，如圖\ref{fig::Ref Cocos 26}a。
+儘管如此，大陸岩石圈的溫度依然高於穩定大陸，地函楔中橄欖岩融點因大量自由水加入而降低，在距離海溝100公里處發生部分熔融，如圖\ref{fig::Ref Cocos 26}c中黃色線段處。
+同時劇烈的脫水作用導致大量蛇紋岩化的橄欖岩在地函楔形成大範圍的低黏滯度區，如圖\ref{fig::Ref Cocos 26}b，促使地函流流動，增加地函楔溫度。
+在近地表，海洋地殼上的沉積物、因變形而破碎的海洋地殼與蛇紋岩化橄欖岩在弧前區域堆積。
+此時隱沒板塊以一相對高角度的狀態隱沒，角度可達50度，與正常的隱沒帶無異，隱沒角度隨時間變化如圖\ref{fig::Cocos Ref slab time}c。
+
+在模型進行約略8 Myr時，隱沒板塊在深度30公里左右觸碰大陸岩石圈，隨後隱沒板塊角度開始快速下降，與動水壓力力矩顯著上升的時間點不謀而合，如圖\ref{fig::Cocos Ref torque time}。
+從圖\ref{fig::Ref Cocos 51}d模型動態壓力可見於地函楔頂部出現一低壓區，其與隱沒板塊下方因板塊彎曲所形成的高壓帶造成明顯的壓力梯度，因此造成動水壓力力矩增加。
+同時間圖\ref{fig::Ref Cocos 51}c顯示在地函楔較深處持續發生部分熔融，在地表絕對座標700公里處有火山島弧生成。
+
+隨後從10-15 Myr隱沒傾角逐漸降低，至接近15 Myr時模型達到平坦隱沒條件。
+此時，地表上增積岩體累積厚大的沈積物，其所形成的弧前隆起高過火山島弧。
+在隱沒板塊上方
+這段時間隱沒板塊狀態直接影響岩漿作用特徵。
+部分熔融比例幾乎呈指數減少，熔融量在平坦隱沒發育後趨近於0，暗示著火山活動停止，可見圖\ref{fig::Cocos Ref melting time}。
+此外，部分熔融發生位置在5百萬年間往內陸移動超過50公里，暗示著地函楔600度等溫線逐漸往內陸移動。
+
+隨著隱沒持續進行，穩定的平坦隱沒於20 Myr後不再有明顯幾何上的改變，平坦深度維持在莫合面之下，符合墨西哥區域的接收函數結果，見圖\ref{fig::Ref Cocos 101}a、圖\ref{fig::Ref Cocos 126}a與圖\ref{fig::Ref Cocos 150}a。
+隱沒地殼與大陸地殼交界處有一厚度約5公里的沈積物厚層，中間夾雜些許蛇紋岩化橄欖岩，這暗示著隱沒板塊平坦段雖然有長達100公里與大陸地殼接觸，然而交界處物質強度極弱，黏滯度低，很可能無法累積大量應力。
+\citealp{Song2009}、\citealp{Song2012SC}利用地震學研究，皆有觀測得平坦段上的交界層為低速層。
+\citealp{Song2012SC}更藉由非均相性認為其為精力強烈剪切的變質岩成分。
+\citealp{Manea2017}則認為該弱耦合物質為殘餘的蛇紋岩。
+在本參考模型中，獲得的低強度層應為沈積物主導、具有少部分蛇紋岩的岩石成分。
 
 
-除蛇紋岩之外，額外測試岩漿參數，獲得不同的低年制度厚度於mantle wedge中的發育情形。
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=6in]{Cocos_a0646frame_26_snapshot_5field_150_v1.pdf}
+    \caption[科克斯參考模型於5 Myr時之結果]{科克斯參考模型於5 Myr時之結果。}
+    \label{fig::Ref Cocos 26}
+\end{figure*}
 
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=6in]{Cocos_a0646frame_51_snapshot_5field_150_v1.pdf}
+    \caption[科克斯參考模型於10 Myr時之結果]{科克斯參考模型於10 Myr時之結果。}
+    \label{fig::Ref Cocos 51}
+\end{figure*}
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=6in]{Cocos_a0646frame_76_snapshot_5field_150_v1.pdf}
+    \caption[科克斯參考模型於15 Myr時之結果]{科克斯參考模型於15 Myr時之結果。}
+    \label{fig::Ref Cocos 76}
+\end{figure*}
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=6in]{Cocos_a0646frame_101_snapshot_5field_150_v1.pdf}
+    \caption[科克斯參考模型於20 Myr時之結果]{科克斯參考模型於20 Myr時之結果。}
+    \label{fig::Ref Cocos 101}
+\end{figure*}
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=6in]{Cocos_a0646frame_126_snapshot_5field_150_v1.pdf}
+    \caption[科克斯參考模型於25 Myr時之結果]{科克斯參考模型於25 Myr時之結果。}
+    \label{fig::Ref Cocos 126}
+\end{figure*}
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=6in]{Cocos_a0646frame_150_snapshot_5field_150_v1.pdf}
+    \caption[科克斯參考模型於30 Myr時之結果]{科克斯參考模型於30 Myr時之結果。}
+    \label{fig::Ref Cocos 150}
+\end{figure*}
+
+\newpage
+\subsubsection{科克斯參考模型脫水位置與岩漿作用}
+模型中發生部分熔融與海溝之距離隨時間變化如圖\ref{fig::Cocos Ref melting time}a所示。部分熔融量隨時間變化如圖\ref{fig::Nazca_Ref_melting_time}b。模型中共可分成三段岩漿活躍時期與一段岩漿靜止期。
+
+第一段岩漿活躍期在0-8 Myr隱沒早期，此時熔融量不多，以地函楔中的橄欖岩為主，主要發生在距海溝100公里處，為標準的島弧岩漿特徵。
+第二段岩漿活躍期出現在8-20 Myr，由於平坦隱沒在8 Myr開始發育，因此當隱沒板塊發生幾何形狀改變後，部分熔融位置開始往內陸移動，從8-15 Myr之間共移動百餘公里。
+
+岩漿靜止其始於平坦隱沒順利成形的15 Myr，此時因隱沒板塊逐漸貼近大陸地殼下方，莫合面下的地函楔範圍逐漸縮小，因此發生部分熔融的位置不變，但比例逐漸下降，熔融量趨近於0，最終地函楔橄欖岩部分熔融比例於模型進行20 Myr時達到最小值。
+
+隨後模型進入第三段岩漿活躍期，在20 Myr前，部分熔融狀態有一不連續間隔，熔融位置改變、比例稍微上升，如圖\ref{fig::Cocos Ref melting time}a。
+這暗示著岩漿作用區域改變，並且在該不連續時間段段後，部分熔融又重新以緩慢的速率往內陸遷移，與平坦隱沒平坦段的持續發育增長有關，隱沒板塊平坦段長度隨時間變化見圖\ref{fig::Cocos Ref slab time}。
+平坦隱沒具有與正常隱沒帶不同的溫壓路徑，由於其地殼在等深度下維持不變長達近80公里，在整段平坦段中壓力不變，但越靠內陸側之岩石溫度越高，此時鐵鎂岩相與沉積岩相很有可能會通過固熔點，導致海洋地殼發生部分熔融。
+圖\ref{fig::Nazca_Ref_melting_time}所統計之熔融岩相量顯示在20 Myr後陸續發生沉積物部分熔融，甚至在23 Myr後橄欖岩熔融消失，此特徵與該地區的岩漿觀測研究相符。
+
+\begin{figure*}[hb]
+    \centering
+    \includegraphics[width=5in]{Ref_Cocos_melting_time_v1.pdf}
+    \caption[科克斯參考模型岩漿作用隨時間變化]{科克斯參考模型岩漿作用隨時間變化，灰色底標出平坦隱沒發育後時間段。(a)部分熔融與海溝之距離隨時間變化圖，縱軸中每個點代表每次部分熔融發生位置，顏色為部分指數上的熔融比例。(b)部分熔融量隨時間變化圖，部分熔融量單位為每單位海溝產生之立方公里量中每20萬年瞬時量。顏色代表不同岩相。}
+    \label{fig::Cocos Ref melting time}
+\end{figure*}
+
+
+將模型中部分熔融事件與岩漿庫絕對位置繪出，分別獲得圖\ref{fig::Cocos Ref 2Dtime series}a, b。
+圖中顯示顯著的三段岩漿活躍期，第一段岩漿活躍期發生在絕對座標500至650公里、距海溝100公里之間，與正常的島弧岩漿活動特徵類似。
+第二段岩漿活躍期發生在絕對座標650-750公里內，熔融深度、岩漿庫深度較第一段活躍期深，岩漿量也較大。
+最終第三段岩漿活躍期發生在絕對座標750-830公里內，岩漿庫規模皆沒有前兩段活躍期大，但位置較集中，並且持續時間最長。
+
+玄武岩至榴輝岩相變位置見圖\ref{fig::Cocos Ref 2Dtime series}c。
+在模型早期，因隱沒岩石圈溫度比大陸岩石圈高，因此玄武岩至榴輝岩相變深度從40公里逐漸往接近100公里移動。
+然而從圖\ref{fig::Ref Cocos 26}a與c可見儘管發生相變延遲，該時期是一高角度隱沒帶，並沒有明顯的隱沒傾角趨緩特徵。
+隨後在15 Myr之後，玄武岩相地殼來到模型時間段間最小長度，亦即玄武岩進入海溝後於15 Myr時會以最短的速度相變成榴輝岩相，圖\ref{fig::Cocos Ref torque time}中顯示在15 Myr後重力力矩達到最高點，同樣可驗證該時間點為榴輝岩相長度達到模型中最大值，然而此時間剛好發生在平坦已沒形成後不到一個百萬年。
+因此，再次證明玄武岩相變延遲並不足以解釋平坦隱沒由尚未相變的海洋地殼所構成。
+隨後由於平坦隱沒地殼往內陸延伸的速度大於隱沒地殼增溫的速度，因此再次發生玄武岩相變延遲，至20 Myr後向變延遲的現象趨緩。
+平坦段中增溫速度緩慢也暗示著其上方沒有顯著的不可逆變形，因此摩擦熱不大，這近一步意味著平坦段上的應力狀態以低耦合為主，再次與觀測資料吻合。
+
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=5in]{Cocos_a0646_2Dtime_series_v1.pdf}
+    \caption[科克斯參考模型部分熔融、岩漿庫與玄武岩相變時空關係圖]{科克斯參考模型部分熔融、岩漿庫與玄武岩相變時空關係圖。}
+    \label{fig::Cocos Ref 2Dtime series}
+\end{figure*}
+
+\newpage
+\subsubsection{參考模型隱沒板塊與其轉動平衡}
+模型中的平坦隱沒長度與深度隨時間變化見圖\ref{fig::Cocos Ref slab time}a, b，平坦段深度與長度的定義已於\ref{平坦隱沒定義}提及，平坦段被定義為隱沒板塊上兩個反曲點之間的區域，平坦段長度為隱沒板塊上兩個反曲點之間的長度，而平坦深度為平坦段中的深度中位數。
+
+在平坦隱沒發育初期，模型時間15-20 Myr之間平坦隱沒還在緩慢發育，並且玄武岩相變延遲持續發生，因此儘管重力力矩逐漸下降，平坦段長度並沒有顯著增加，隨後於20 Myr後，重力力矩不在變化，平坦段開始增長，至30 Myr可到達超過100公里長。
+儘管平坦隱沒段長度逐漸變長，然而模型中平坦隱沒段深度於全時段皆沒有劇烈改變，均落在30-40公里深上下。
+平坦隱沒段長度與深度皆與觀測資料吻合。
+
+模型中隱沒板塊於150公里之內的角度變化如圖\ref{fig::Cocos Ref slab time}c所示。
+在模型早期，角度隨時間增加直到5 Myr，隨後隨著動水壓力力矩快速增加(圖\ref{fig::Cocos Ref torque time})，隱沒傾角開使緩慢下降。
+在模型時間15 Myr後，隱沒傾角不再劇烈改變，暗示平坦隱沒開始發育後，隱沒帶須盡穩定，不再有幾何形狀上的變化。
+
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=5in]{Ref_Cocos_slab_time_v1.pdf}
+    \caption[科克斯參考模型隱沒板塊狀態隨時間變化]{科克斯參考模型隱沒板塊狀態隨時間變化。}
+    \label{fig::Cocos Ref slab time}
+\end{figure*}
+
+\begin{figure*}[hb]
+    \centering
+    \includegraphics[width=5in]{Ref_Cocos_torque_time_v1.pdf}
+    \caption[科克斯參考模型重力力矩與動水壓力矩隨時間變化]{科克斯參考模型重力力矩與動水壓力矩隨時間變化。}
+    \label{fig::Cocos Ref torque time}
+\end{figure*}
+
+
+模型中不同時間段的重力力矩與動水壓力力矩值如圖\ref{fig::Cocos Ref torque time}。
+由於本參考模型有玄武岩相變延遲的現象，因此重力力矩在時間軸上改變劇烈。
+模型早期有顯著的玄武岩相變延遲，然而在隱沒板塊觸碰到大陸地殼後，被動導致隱沒傾角逐漸減少，玄武岩相變延遲現象消失，隱沒板塊溫度逐漸升高。
+重力力矩在模型時間15 Myr達到最大值，隨後隨著平坦隱沒發育，再次發生玄武岩相變延遲，導致重力力矩逐漸減小。
+
+動水壓力力矩增加起始時間早於重力力矩，應發生於隱沒板塊觸碰到大陸地殼的瞬間開始大幅增加。
+在平坦隱沒發育後，動水壓力力矩雖有上升趨勢，然而增加斜率緩慢。
+導致本模型能維持平坦隱沒持續15 Myr的原因可能有兩種，
+第一，因為玄武岩相變延遲的現象導致重力力矩在15 Myr後持續減少，因此平坦隱沒能穩定存在。
+第二，早在動水壓力力矩巨幅增加的時期，便已經決定整個隱沒系統的動態穩定。由於15 Myr後動水壓力力矩依然維持極大轉動慣量，因此無論重力力矩是否下降，平坦隱沒皆可穩定存在。
