@@ -65,55 +65,7 @@ $f$ 為作用在物質上的作用力，$m$為物質的質量。本研究所使�
 \rho \vec a = \nabla\cdot\vec\sigma+\rho\vec g\label{eqn:momentum Lagrangian2}
 \end{align}
 此為Navier-Stokes方程式。 其中$\rho$為密度，$\vec a$為節點加速度，$\vec\sigma$為應力張量(stress tensor)，$g$為重力加速度。
-%\begin{figure*}[ht!]
-%    \centering
-%    \includegraphics[width=4in]{momentum.pdf}
-%    \caption{ Lagrangian elementary Volume considered for the derivation of the respective form of x-momentum equation.}
-%    \label{fig::Lagrangian Volume Momentum}
-%\end{figure*}
-%利用計算作用於一小拉格朗日體積上之淨力(net forces)可證明$\ref{eqn:momentum Lagrangian}$:
 
-%對x分量而言，
-%\begin{align}
-%f_x=f_{xA}+f_{xB}+f_{xC}+f_{xD}+f_{xE}+f_{xF}+mg_x \label{eqn:Ftotal0}
-%\end{align}
-
-%$f_{xA}- f_{xF}$ 為與應力相關之力，其來自於各邊界A-F上體積外部。 
-%$f_g=m_gx$ 為重力。
-
-%\begin{align}
-%f_{xA} = -\sigma_{xxA}\Delta y\Delta z\label{eqn:fxA}\\
-%f_{xB} = +\sigma_{xxB}\Delta y\Delta z\label{eqn:fxB}\\
-%f_{xC} = -\sigma_{xyC}\Delta x\Delta z\label{eqn:fxC}\\
-%f_{xD} = +\sigma_{xyD}\Delta x\Delta z\label{eqn:fxD}\\
-%f_{xE} = -\sigma_{xzE}\Delta x\Delta y\label{eqn:fxE}\\
-%f_{xF} = +\sigma_{xzF}\Delta x\Delta y\label{eqn:fxF}
-%\end{align}
-%將($\ref{eqn:fxA}$)-($\ref{eqn:fxF}$)帶入($\ref{eqn:Ftotal0}$)中得到:
-%\begin{align}
-%(\sigma_{xxB}-\sigma_{xxA})\Delta y\Delta z+(\sigma_{xyD}-\sigma_{xyC})\Delta x\Delta z+(\sigma_{xzF}-\sigma_{xzE})\Delta x\Delta y+mg_x = ma_x 
-%\end{align}
-%透過拉格朗日體積對左右兩式進行正交化:
-%\begin{align}
-%V=\Delta x\Delta y\Delta z
-%\end{align}
-%得到:
-%\begin{align}
-%\frac{(\sigma_{xxB}-\sigma_{xxA})\Delta y\Delta z}{V}+\frac{(\sigma_{xyD}-\sigma_{xyC})\Delta x\Delta z}{V}+\frac{(\sigma_{xzF}-\sigma_{xzE})\Delta x\Delta y}{V}+\frac{m}{V}g_x=\frac{m}{V}a_x
-%\end{align}
-%或
-%\begin{align}
-%\frac{\Delta\sigma_{xx}}{\Delta x}+\frac{\Delta\sigma_{xy}}{\Delta y}+\frac{\Delta\sigma_{xz}}{\Delta z}+\rho g_x = \rho a_x
-%\end{align}
-%當各個應力分量的差異趨近於零，可獲得
-%\begin{align}
-%\frac{\partial\sigma_{xx}}{\partial x}+\frac{\partial\sigma_{xy}}{\partial y}+\frac{\partial\sigma_{xz}}{\partial z}+\rho g_x = \rho a_x
-%\end{align}
-%或
-%\begin{align}
-%    \rho \vec a = \nabla\cdot\vec\sigma_+\rho\vec g
-%\end{align}
-%其中 $u$ 是位移量。
 \subsection{能量守恆}
 為了描述一連續體中的能量平衡狀態，使用溫度方程式表示能量的進出。拉格朗日描述法下的能量守恆方程式表示如下:
 \begin{align}
@@ -282,7 +234,7 @@ P >  0.7 \quad GPa
 模型中的地函除了普通橄欖岩與蛇紋岩之外，還有考慮含水的橄欖岩。
 本研究假設只有在含水橄欖岩上方的地函楔會發生部分熔融事件。
 一旦溫度太高而使岩石脫水，含水橄欖石就會轉變為一般的橄欖岩。
-相變條件式如下。
+相變條件式參考\citealp{Grove2009}，表達式如下:
 \begin{align}
 T > 800-35\times 10^{-9}\times (depth-62)^{2  \quad \circ}C
 \end{align}
