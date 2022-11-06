@@ -1,14 +1,15 @@
 % !TeX root = ../main.tex
 
-\chapter{Numerical modelling method}
+\chapter{數值模型}
 
-
-同第一章所述，地球動力學為探討地球內部的動力過程，以及地球內部物質受力後所發生的變形作用，因此其所牽扯的運動狀態複雜。
-地質學藉由地表觀察，可得知過去地表上經歷的地質事件，可間接獲得當時的動力狀態，不過隨著時間推移，可用的岩石紀錄越來越少，並且地質資料並無法有效代表地球內部的動力過程。
+同第一章所述，地球動力學為探討地球內部的動力過程，以及地球內部物質受力後所發生的變形作用，其所牽扯的運動過程複雜。
+地質學藉由地表觀察，可得知過去地表上經歷的地質事件，可間接獲得當時的動力狀態，不過隨著時間推移，可用的岩石紀錄越來越少，並且地質資料並無法完全代表地球內部的動力過程。
 地球內部的直接觀察僅能靠鑽井資料獲取，然而地球上最深的鑽井資料為12公里(\citealp{ganchin1998seismic})，不到地球半徑的千分之二。
 因此，只能靠間接方法探測地球內部，地球物理學便是強大研究學門。
-地球物理學包含多種研究，重力學、磁力學、大地電磁等方法利用逆推方法(inversion)計算地表測站資料，獲得地下構造成像，不過這些方法並不是接收值些通過地球內部介質而來的訊號，因此約束不多且深度解析有限。
-由於地震波能穿透整個地球被全球地表測站接收，提供內部介質的資訊，固地震學為目前最常見對地球深部構造的探勘方法。然而最早的地震學發展始於19世紀末，其所觀測得之構造在地質時間尺度上只能被視為瞬間狀態，無法代表地球內部過去的構造狀態。為了彌補地球內部在時間上與空間上的有限數據量，地質建模與模擬成為探討地球內部演化的有力工具。
+地球物理學包含多種研究，重力學、磁力學、大地電磁等方法利用矩陣逆推(inversion)計算地表測站資料，獲得地下構造成像，不過這些方法並不是接收直接通過地球內部介質而來的訊號，因此約束不多且深度解析有限。
+地震波能量穿透整個地球被全球地表測站接收，過程中地震波直接通過地球內部介質，為地球內部構造提供有效的資訊，固地震學為目前最常見對地球深部構造的探勘方法。
+然而最早的地震學發展始於19世紀末，其所觀測得之構造在地質時間尺度上只能被視為瞬間狀態，無法代表地球內部過去的構造狀態。
+為了彌補地球內部在時間上與空間上的有限數據量，地質建模與模擬成為探討地球內部演化的有力工具。
 
 在本研究的數值模型中，地球動力學所牽扯的運動過程複雜，不適用單純的質點或剛體運動，需要使用連續體力學(Continuum mechanics)的物理概念描述岩石的動力與變形行為。
 在模型中將岩石單元視為地質構造上的連續介質(Continuum media)，岩石具有巨觀物理量，受牛頓力學所支配，系統中的總力除了質點運動中所包含的外力(external force)之外，還需要考慮系統的內部作用力(internal force)。
@@ -17,8 +18,7 @@
 而流體力學的數學式共有三大守恆定律，分別為質量守恆、動量守恆與能量守恆。
 該三大守恆定律可寫成偏微分方程式的形式，同時也是連續方程式，此時因偏微分方程式之解析解多半不存在，僅能利用數值近似方法求得最佳解。
 
-本研究的目的為探討平坦隱沒形成的條件以及演化發育過程。
-在本章節中會先介紹數值模擬的計算方式以及模型中的假設，接著說明初始模型的設定。
+在本章節中會介紹數值模擬的計算方式以及模型物質物理特性。
 
 \section{FLAC}
 
@@ -28,7 +28,7 @@ FLAC使用拉格朗日描述法(Lagrangian formulation)與非均值網格(struct
 
 \begin{figure*}[ht!]
     \centering
-    \includegraphics[width=4in]{FLAC_method.png}
+    \includegraphics[width=4in]{FLAC_flow.pdf}
     \caption{FLAC 程式運算流程圖
     }
     \label{fig::FLAC_method}
@@ -48,15 +48,16 @@ FLAC所使用的主控方程式包含質量守恆、動量守恆與能量守恆�
 \frac{D\rho}{Dt}+\rho\nabla\cdot\vec v =0 
 \label{eqn:MASS_Lagrangian}
 \end{align}
-其中 $\frac{D\rho}{Dt}$ 表示拉格朗日座標下的密度隨時間變化，$\vec v$為速度向量。
+其中 $\frac{D\rho}{Dt}$ 表示拉格朗日座標下的密度隨時間變化，$\rho$為密度，$\vec v$為速度向量。
 
 \subsection{動量守恆}
 地球內部的動力包含了介質所受之外力與內力力平衡的結果，並且在物質受力後產生變形。
 在數值計算中利用動量守恆方程式將力與變形聯繫，滿足牛頓第二運動定律。
 \begin{align}
-f=ma
+\vec f=m\vec a
 \end{align}
-$f$ 為作用在物質上的作用力，$m$為物質的質量。本研究所使用之拉格朗日坐標系下動量守恆方程式為:
+$f$ 為作用在物質上的作用力，$m$為物質的質量。
+本研究所使用之拉格朗日坐標系下動量守恆方程式為:
 \begin{align}
 \rho \frac{ Dv_{i}}{Dt} = \frac{\partial \sigma_{ij}}{\partial x_j}+\rho g_i\label{eqn:momentum Lagrangian}
 \end{align}
@@ -67,28 +68,30 @@ $f$ 為作用在物質上的作用力，$m$為物質的質量。本研究所使�
 此為Navier-Stokes方程式。 其中$\rho$為密度，$\vec a$為節點加速度，$\vec\sigma$為應力張量(stress tensor)，$g$為重力加速度。
 
 \subsection{能量守恆}
-為了描述一連續體中的能量平衡狀態，使用溫度方程式表示能量的進出。拉格朗日描述法下的能量守恆方程式表示如下:
-\begin{align}
-\rho C_p \frac{DT}{Dt} = -\frac{\partial q_x}{\partial x}-\frac{\partial q_y}{\partial y}-\frac{\partial q_z}{\partial z}+H_s+H_L
-\end{align}
-將熱通量拆解:
-\begin{align}
-q=-k\frac{\partial T}{\partial x}
-\end{align}
+為了描述一連續體中的能量平衡狀態，使用溫度方程式表示能量的進出。
+拉格朗日描述法下的能量守恆方程式表示如下:
+%\begin{align}
+%\rho C_p \frac{DT}{Dt} = -\frac{\partial q_x}{\partial x}-\frac{\partial q_y}{\partial y}-\frac{\partial q_z}{\partial z}+H_s+H_L
+%\end{align}
+%將熱通量拆解:
+%\begin{align}
+%q=-k\frac{\partial T}{\partial x}
+%\end{align}
 \begin{align}
 \rho C_p \frac{DT}{Dt} = k\nabla^2T+H_s+H_L
+\label{eq:heat equation}
 \end{align}
-式為拉格朗日座標下標準的熱擴散方程式加上額外的兩種熱源，分別為摩擦熱($H_s$)與潛熱($H_L$)。
+式\ref{eq:heat equation}為拉格朗日座標下標準的熱擴散方程式加上額外的兩種熱源，分別為摩擦熱($H_s$, friction heat)與潛熱($H_L$, latent)。
 其中$T$是溫度，$\rho$是密度，$C_p$是等壓比熱容量，$k$是熱傳導係數。
 摩擦熱($H_s$)由剪切力在不可逆變形中能量耗散所產生，通式如下:
 \begin{align}
     H_s = \sigma^{'}_{ij}\dot\varepsilon^{'}_{ij}
 \end{align}
-$\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為軸差應變率(deviatoric strain rate)
+$\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為軸差應變率(deviatoric strain rate)。
 
-潛熱在$\ref{岩漿作用造成的溫度影響}$節中有較詳細的介紹。
+潛熱($H_L$)為物質發生相態變化過程中，溫度不變時釋放或吸收的能量，本研究唯一有考慮的潛熱為岩漿結晶中產生的放熱，在\ref{岩漿作用造成的溫度影響}節中有較詳細的介紹。
 本研究中並沒有考慮放射性元素所產生的熱。
-主控方程式沒有考慮絕熱溫度梯度，因此動力過程中的溫度皆不包含絕熱梯度。然而本研究在不影響動力過程的相變與岩漿作用下有考慮絕熱溫度梯度。
+主控方程式沒有考慮絕熱(adiabatic)溫度梯度，因此動力過程中的溫度皆不包含絕熱溫度，然而本研究在不影響動力過程的相變與岩漿作用下有考慮絕熱溫度梯度。
 
 \section{岩石流變學}
 主控方程式包含七個方程式與十個未知數，因此求解過程需要額外方程式。
@@ -101,20 +104,21 @@ $\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為軸差�
 彈性流變假設物質所承受的應力與其應變呈正比，可以是虎克定律的展現。彈性變形很重要的精隨為其變形是可逆的，若施加在彈性物質上的應力被移除，其變形量會變回零。
 由虎克定律得到彈性通式:
 \begin{align}
-\sigma_{ij}=C_{ijkl} \varepsilon_{kl}
+\sigma_{ij}=E_{ijkl} \varepsilon_{kl}
 \end{align}
+其中，$\sigma$為二階應力張量(stress tensor)，$E$為四階張量彈性常數(elastic constant)，$\varepsilon$為應變。
 假設物質具有均質性(isotropic)，則上列通式矩陣僅會有兩個獨立分量:
 
 \begin{align}
     \sigma_{ij}=\lambda_1 \varepsilon_{kk} \delta_{ij}+2 \lambda_2 \varepsilon_{ij}=K\varepsilon_{kk} \delta_{ij}+2 \mu \varepsilon_{ij}^{'} \label{eqn:elastic tensor}
 \end{align}
 
-彈性力學所使用的拉梅參數為$\lambda_1 = \lambda_2 = 3 \times 10^{10} Pa$，其中第一拉梅參數(Lamé's first parameter, $\lambda_1$)與體彈性系數(bulk modulus, $K$)、剪彈性系數(shear modulus, $\mu$)的關係式如下:
+彈性力學所使用的拉梅參數為$\lambda_1 = \lambda_2 = 3 \times 10^{10} Pa$，$\varepsilon^{'}$為軸差應變，其中第一拉梅參數(Lamé's first parameter, $\lambda_1$)與體彈性系數(bulk modulus, $K$)、剪彈性系數(shear modulus, $\mu$)的關係式如下:
 \begin{align}
 \lambda_1 = K - \frac{2}{3}\mu
 \end{align}
 
-第二拉梅參數(Lamé's second parameter, $\lambda_2$)等同於剪彈性系數(shear modulus, $\mu$)。
+第二拉梅參數(Lamé's second parameter, $\lambda_2$)等同於剪彈性系數。
 
 本研究所使用的塑性變形滿足莫爾庫倫破壞準則(Mohr-Coulomb)定義屈服應力(yield stress)的大小:
 \begin{align}
@@ -146,6 +150,9 @@ $\eta$為黏滯度，$\dot\varepsilon^{'}$為軸差應變率張量矩陣，$\dot
 \begin{align}
     \sigma_{viscous} = 2\eta\dot\varepsilon^{'} \label{eqn:viscous tensor}
 \end{align}
+
+最終採用的黏彈性應力$\sigma_{elasto-viscous}$為馬克士威模型(Maxwell model)，其為一純黏性阻尼與純彈性彈簧串連組成。
+
 在同一網格中會分別計算每個網格上的$\sigma_{plastic}$與$\sigma_{viscous}$，最終每個網格所採計的應力值為($\sigma_{elasto-plastic}$, $\sigma_{elasto-viscous}$)兩者之間的最小值。
 最終模型的岩石強度剖面圖如圖$\ref{fig::strength}$所示。
 \begin{figure*}[ht!]
@@ -166,7 +173,6 @@ $\eta$為黏滯度，$\dot\varepsilon^{'}$為軸差應變率張量矩陣，$\dot
 以下將一一列出模型中所考慮的相變過程:
 
 \subsection{蛇紋岩化的橄欖岩}
-橄欖岩---蛇紋岩化橄欖岩
 一旦隱沒板塊進入地函中，隱沒海洋板塊上之沉積物在高溫高壓下會釋放大量流體至楔中，絕大部分集中在地函楔。乾的地函楔因而經歷水合作用，導致部分橄欖岩被蛇紋岩化。
 蛇紋岩化橄欖岩主要集中於隱沒帶中淺部，並且目前人類對於蛇紋岩化橄欖岩之相變作用尚未有高度不確定性，因此本研究中以參數化方式模擬蛇紋岩化橄欖岩相變過程。
 使用者可自行調整在隱沒板塊上方有多少厚度的地函楔會因脫水作用相變成蛇紋岩化橄欖岩(\citealp{Tan2012})。
@@ -179,20 +185,26 @@ P > 2.1 + (7.5-2.1)\times (T-730)/(500-730) \quad GPa \\
 P > 2.1 + (0.2-2.1) \times (T-730)/(650-730) \quad GPa
 \end{align}
 其中$T$為攝氏($^\circ C$)。
-圖$\ref{fig::serpentinite_phase_diagram}$為橄欖岩相溫壓相圖。
+
+本研究所使用的橄欖岩含水固相線(wet solidus)參考自\citealp{katz2003new}，簡化式如下。
+\begin{align}
+    T > max (980+6\times (3.3 \times P-14) ,\quad 1090-178\times(1-exp(-4.125\times P))) ^\circ C 
+\end{align}
+其中$P$為十億帕斯卡($GPa$)。
+圖\ref{fig::serpentinite_phase_diagram}為橄欖岩相溫壓相圖。
 
 \begin{figure*}[ht!]
     \centering
     \includegraphics[width=4in]{serpentinite_phase_diagram_v1.pdf}
-    \caption[橄欖岩相圖]{橄欖岩相圖}
+    \caption[橄欖岩相圖]{橄欖岩相圖。紫線代表蛇紋岩脫水回橄欖岩之相變圖，摘自\citealp{Ulmer1995}; 綠線與黃線分別代表橄欖岩的乾固相線(dry solidus)與含水固相線(wet solidus)，摘自\citealp{katz2003new}。另用灰線實線與虛線分別表示墨西哥參考模型之海洋岩石圈與大陸岩石圈地溫梯度。}
     \label{fig::serpentinite_phase_diagram}
 \end{figure*}
 
-\subsection{玄武岩-榴輝岩}
+\subsection{玄武岩 --- 榴輝岩}
 
 隨著隱沒板塊沉入更深的地函，其上的鎂鐵質玄武岩在高壓條件下進入榴輝岩穩定場，此時發生玄武岩相變，由高溫高壓實驗可獲得穩定場溫壓界線(\citealp{Hacker2003})，詳見下圖鎂鐵質岩相圖\ref{fig::basalt_phase_diagram}。
-榴輝岩在隱沒帶中扮演非常重要的角色，同第一章所提及，榴輝岩是變質岩相中密度最大的相，造成的重力效應可以維持隱沒帶的持續性，是板塊移動的驅動力。
-在該模型中，網格內的標記子會追蹤玄武岩海洋地殼的溫壓狀態，並與榴輝岩穩定性場進行了比較，以下方程為鎂鐵質玄武岩相變的簡化條件式。
+榴輝岩在隱沒帶中扮演非常重要的角色，同第一章所提及，榴輝岩是變質岩相中密度最大的相，造成的重力效應可以維持隱沒帶的持續性，為板塊拉力(slab pull)的驅動力。
+在模型中，網格內的標記子會追蹤玄武岩海洋地殼的溫壓狀態，並與榴輝岩穩定性場進行了比較，以下方程為鎂鐵質玄武岩相變的簡化條件式。
 
 \begin{align}
     P > 0.0022 \times T -0.3  \quad GPa\\
@@ -200,51 +212,66 @@ P > 2.1 + (0.2-2.1) \times (T-730)/(650-730) \quad GPa
 \end{align}
 其中$T$為攝氏($^\circ C$)
 
+此外，本研究亦考慮鎂鐵質岩的部分熔融(partial melting)作用，鎂鐵質岩的含水固相線參考自\citealp{Gutscher2000Bcan}，簡化式如下。
+\begin{align}
+    T > 1050-420 \times (1-exp(-P\times 3.3)) \; ^\circ C \quad if \; P <= 1 \; GPa\\
+    T > 630 + 13 \times (-P)^2\; ^\circ C \quad if \; 1 < P <= 2.6 \;GPa  \\
+    T > 43\times(P+14)\; ^\circ C \quad if \; P > 2.6\; GPa
+\end{align}
+圖\ref{fig::basalt_phase_diagram}為鎂鐵質岩相溫壓相圖。
 \begin{figure*}[ht!]
     \centering
     \includegraphics[width=4in]{basalt_phase_diagram_v1.pdf}
-    \caption{鎂鐵質岩相圖，綠線隔開玄武岩與榴輝岩的穩定場，改編自\citealp{Hacker2003}，橘線為鎂鐵質岩的濕固相線(wet solidus)，改編自\citealp{Gutscher2000Bcan}}
+    \caption{鎂鐵質岩相圖，綠線隔開玄武岩與榴輝岩的穩定場，改編自\citealp{Hacker2003}，橘線為鎂鐵質岩的含水固相線(wet solidus)，改編自\citealp{Gutscher2000Bcan}}
     \label{fig::basalt_phase_diagram}
 \end{figure*}
 
 \subsection{沉積岩 --- 片岩}
-模型中的沈積物在隱沒過程中進入高壓環境，發生成岩作用、壓密作用與變質作用。
+模型中的沉積物在隱沒過程中進入高壓環境，發生成岩作用、壓密作用與變質作用。
 不過由於這一系列作用是連續的，因此模型中的相變過程並不會造成岩石有大幅度物理性質上的改變。
-下列方程為沈積物轉為片岩過程的條件式。
+下列方程為沉積物轉為片岩過程的條件式。
 \begin{align}
-T > 650^{\circ} C\\
-P >  0.7 \quad GPa 
+T > 650\; ^{\circ} C\\
+P >  0.7 \;GPa 
 \end{align}
-
-本研究有考量沈積物的部分熔融，參考自\citealp{Forster2021}與圖\ref{fig::sediment_phase_diagram.png}。
+本研究有考量沉積物的部分熔融，參考自\citealp{Forster2021}。
 \begin{align}
-    T > max (578+ P \times 0.121,  \quad 617+e^{P\times 1.7\times 10^{-3}}) \quad ^{\circ} C
+    T > max (578+ P \times 0.121,\ 617+e^{P\times 1.7\times 10^{-3}}) \; ^{\circ} C
 \end{align}
-
+其中$P$為十億帕斯卡($GPa$)。
+圖\ref{fig::sediment_phase_diagram}為沉積物岩相溫壓相圖。
 \begin{figure*}[ht!]
     \centering
     \includegraphics[width=4in]{sediment_phase_diagram_v1.pdf}
-    \caption{沈積物變質岩相圖，橘線為沈積物濕固相線，改編自\citealp{Forster2021}。}
-    \label{fig::sediment_phase_diagram.png}
+    \caption{沉積物變質岩相圖，橘線為沉積物含水固相線，改編自\citealp{Forster2021}。}
+    \label{fig::sediment_phase_diagram}
 \end{figure*}
-
 
 \subsection{綠泥石 --- 橄欖石}
 
-模型中的地函除了普通橄欖岩與蛇紋岩之外，還有考慮含水的橄欖岩。
-本研究假設只有在含水橄欖岩上方的地函楔會發生部分熔融事件。
-一旦溫度太高而使岩石脫水，含水橄欖石就會轉變為一般的橄欖岩。
-相變條件式參考\citealp{Grove2009}，表達式如下:
+模型中的地函除了普通橄欖石與蛇紋化橄欖石之外，還有考慮綠泥石的存在。
+本研究假設部分熔融事件只會發生在具有綠泥石之海洋岩石圈上方的地函楔。
+一旦溫度太高而使岩石脫水，綠泥石就會轉變為一般的橄欖石。
+相變條件式參考\citealp{Grove2009}，簡化式如下:
 \begin{align}
-T > 800-35\times 10^{-9}\times (depth-62)^{2  \quad \circ}C
+T > 800-35\times 10^{-9}\times (depth-62)^{2 \;\circ}C
 \end{align}
+圖\ref{fig::chlorite_phase_diagram}為綠泥石岩相圖。
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=4in]{chlorite_phase_diagram_v1.pdf}
+    \caption{綠泥石岩相圖，橘紅線為綠泥石脫水相變線，參考自\citealp{Grove2009}。}
+    \label{fig::chlorite_phase_diagram}
+\end{figure*}
 
 \section{邊界條件}
-
 \subsection{運動邊界條件}
-在現實自然界中，板塊隱沒主要由ridge push和slab pull兩個力作用所引起水平移動，而在數值模型中，主要驅動板塊隱沒的力由邊界條件所施加的速度控制。
+在現實自然界中，板塊水平移動的主要作用力為板塊拉力和洋脊推力兩個分量，
+為了方便控制隱沒系統的聚合速度，本研究數值模型會對模型邊界施加速度控制隱沒系統的聚合速度，此為模型運動邊界條件。
+而模型中板塊主要的驅動力則由運動邊界條件所施加的速度控制。
+
 於本研究中所使用的板塊水平移動運動起初由速度邊界條件所決定，在模型運算期間皆為不隨時間變化的常數，然而，真實自然界中板塊移動速度與時間的關係不應為常數。
-在本研究的納茲卡模型中，所使用的速度邊界條件滿足現生板塊移動速度模型(\citealp{schellart2008global})。然而在科科斯模型中，由於其隱沒板塊較為年輕、強度低，在聚合速率較快的情況下容易發生海洋板塊斷裂的情況，因此
+在本研究的智利模型中，所使用的速度邊界條件滿足現生板塊移動速度模型(\citealp{schellart2008global})。然而在墨西哥模型中，由於其隱沒板塊較為年輕、強度低，在聚合速率較快的情況下容易發生海洋板塊斷裂的情況，因此
 因此在模型進行一段時間後，模型邊界條件隨邊界所承受之總體力大小所決定。
 
 模型會先設定左右邊界最大可施加的力臨界值大小Fc，當模型進行一萬個迴圈後，若邊界承受的力大於初始所給定的力臨界值，則會將速度下降為原先的0.9倍；反之若邊界承受的力尚未達到給定的力臨界值，則速度會增加為原先的1.1倍。此時，每一萬個迴圈，模型運動邊界條件會重新調整一次，以符合觀測結果。因此當模型運行一段時間之後，邊界所承受的力會約略相等於初始條件所設定的力臨界值。
@@ -252,31 +279,31 @@ T > 800-35\times 10^{-9}\times (depth-62)^{2  \quad \circ}C
 \subsection{熱邊界條件}
 本研究中海洋岩石圈溫度構造使用半空間冷卻模型(half space cooling model)，海洋岩石圈厚度與岩石圈年紀之開根號呈正比。由 \citealp{davis1974}提出:
 \begin{align}
-T=T_0+(T_m-T_0)\cdot {erf}(\frac{z}{2\sqrt{\kappa t}}) \label{eq:Half Space Model}
+T=T_0+(T_m-T_0)\cdot erf(\frac{z}{2\sqrt{\kappa t}}) \label{eq:Half Space Model}
 \end{align}
-$T$ 是溫度，$T_m$ 是地函溫度，在本研究中使用1603K。
+$T$ 是溫度，$T_m$ 是地函溫度，在本研究中使用1603K(克爾文)。
 $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在本研究中使用$10^{-6} \frac{m}{s^2}$。$t$ 是海洋岩石圈年紀。
 
 大陸板塊的溫度構造有雙層構造與單層構造之區別。
-本研究根據墨西哥與南美洲地區過去的地球物理研究，分別對科科斯模型與納茲卡模型設定不同的大陸岩石圈溫度構造。
+本研究根據墨西哥與智利過去的地球物理研究，分別對墨西哥模型與智利模型設定不同的大陸岩石圈溫度構造。
 
-科科斯模型中，大陸岩石圈為雙層構造，近地表每公里20度溫度梯度，直到深度至45公里之後溫度梯度為每公里6度，至溫度到達攝氏1330度後維持恆溫。
+墨西哥模型中，大陸岩石圈為雙層構造，近地表每公里20度溫度梯度，直到深度至45公里之後溫度梯度為每公里6度，至溫度到達攝氏1330度後維持恆溫。
 此溫度構造建立在\citealp{Manea2005}; \citealp{Manea2011Thermal}與\citealp{Manea2011Curie}中的墨西哥平坦隱沒區域溫度模型。
 
-納茲卡模型中，大陸岩石圈地溫梯度是單層構造，以岩石圈底部深度140公里作為參考(\citealp{perez2008})，從地表攝氏0度到岩石圈底部攝氏1330度，中間進行線性內插，僅含單一地溫梯度，約略為每公里攝氏9.5度。
+智利模型中，大陸岩石圈地溫梯度是單層構造，以岩石圈底部深度140公里作為參考(\citealp{perez2008})，從地表攝氏0度到岩石圈底部攝氏1330度，中間進行線性內插，僅含單一地溫梯度，約略為每公里攝氏9.5度。
 
-能量交換在岩石圈中以熱傳導為主，溫度變化極大，然而在軟流圈，熱能傳遞以對流為主，因此整個軟流圈至地幔地核邊界(core mantle boundary)的溫度皆維持地函絕熱溫度，僅存在因密度變化所造成之絕熱溫度梯度，因此模型中將岩石圈底部溫度固定為地幔絕熱溫度1330度。
+能量交換在岩石圈中以熱傳導為主，溫度變化極大，然而在軟流圈，熱能傳遞以對流為主，因此整個軟流圈至地函地核邊界(core mantle boundary)的溫度皆維持地函絕熱溫度，僅存在因密度變化所造成之絕熱溫度梯度，因此模型中將岩石圈底部溫度固定為地函絕熱溫度1330度。
 不同構造區溫度隨深度變化圖見圖\ref{fig::地溫剖面圖}。
-\begin{figure*}[ht!]
+\begin{figure*}[h!]
     \centering
-    \includegraphics[width=6in]{temperature_profile.pdf}
-    \caption[本研究使用之模型地溫剖面圖。]{本研究使用之模型地溫剖面圖，左圖為納茲卡模型，右圖為科科斯模型。藍色實線為海洋岩石圈地溫梯度，由式\ref{eq:Half Space Model}與海洋岩石圈年紀決定。咖啡色實線為大陸岩石圈地溫梯度，納茲卡模型大陸岩石圈為單層構造，科科斯模型大陸岩石圈為雙層構造。圖中並沒有考量絕熱地溫梯度。}
+    \includegraphics[width=6in]{temperature_profile_v1.pdf}
+    \caption[本研究使用之模型地下溫度剖面圖。]{本研究使用之模型地下溫度剖面圖，左圖為智利模型，右圖為墨西哥模型。藍色實線為海洋岩石圈地溫梯度，由式\ref{eq:Half Space Model}與海洋岩石圈年紀決定。咖啡色實線為大陸岩石圈地溫梯度，智利模型大陸岩石圈為單層構造，墨西哥模型大陸岩石圈為雙層構造。圖中並沒有考量絕熱地溫梯度。}
     \label{fig::地溫剖面圖}
 \end{figure*}
 
 
 \section{地表侵蝕}
-地表地形演化與板塊構造活動有高度相關，在本研究模型中利用較簡單的方式模擬地形演化過程，包含侵蝕與沈積物堆積作用，使用一維擴散方程式控制侵蝕與堆積作用的速率，最早由\citealp{culling1960analytical} 所提出，其方程式如下:
+地表地形演化與板塊構造活動有高度相關，在本研究模型中利用較簡單的方式模擬地形演化過程，包含侵蝕與沉積物堆積作用，使用一維擴散方程式控制侵蝕與堆積作用的速率，最早由\citealp{culling1960analytical} 所提出，其方程式如下:
 \begin{align}
 \frac{\partial z}{\partial t} = \kappa_S \nabla^2 z \label{eq:erosion}
 \end{align}
@@ -303,10 +330,10 @@ S = -k\nabla z \label{eq:S}
 \end{align}
 
 \section{岩漿作用}
-本研究中，數值模型包含隱沒帶中的岩漿作用，延續李的碩士論文。
-隱沒板塊進入地函時，其上的沈積物與玄武岩在進入高溫高壓環境的同時發生脫水與相變。
-當水分進入地函楔中，其固相線(solidus)從乾固相線(dry solidus)移動至含水固相線(wet solidus)，隱沒板塊上方的橄欖岩融點大幅降低。
-地溫梯度因此容易經過含水固相線，發生部分熔融(partial melting)事件，隨後產生岩漿，部分岩漿分佈在地函與地殼中，成為岩漿庫(magma chamber)，而剩餘岩漿噴發至地表形成火山島弧(volcanic arc)。
+本研究的數值模型包含隱沒帶中的岩漿作用。
+隱沒板塊進入地函時，其上覆沉積物與玄武岩在進入高溫高壓環境的同時發生脫水與相變。
+當水分進入地函楔中，其固相線(solidus)從乾固相線移動至含水固相線，隱沒板塊上方的橄欖岩融點大幅降低。
+地溫梯度因此容易經過含水固相線，發生部分熔融事件，隨後產生岩漿，部分岩漿分佈在地函與地殼中，成為岩漿庫(magma chamber)，而剩餘岩漿噴發至地表形成火山島弧(volcanic arc)。
 \subsection{部分熔融}\label{部分熔融}
 本研究共考慮三種岩相的部分熔融，分別為在地函楔中的橄欖岩相(包含橄欖岩與蛇紋岩)、沉積岩相與鐵鎂質岩相(包含玄武岩與榴輝岩)，並且假設最大部分熔融體積為總體網格內的10$\%$。
 當上述三種岩相之標記點通過\ref{相變}中提及高溫高壓實驗獲得之固相線後，便將該標記點視為熔融態，部分熔融比例($p_{melt}$)計算方式如下：
@@ -315,9 +342,7 @@ S = -k\nabla z \label{eq:S}
 \end{align}
 
 其中$T_{solidus}$為該標記子深度下對應至固相線的溫度，即為熔點(melting point)，部分熔融比例在熔點與高於熔點500度範圍內從0$\%$線性增加至10$\%$。
-模型中容許多個部分熔融事件發生，並且會依照部分熔融比例累加。
-隨後藉由部分熔融比例計算模型中的岩漿量。
-
+模型中允許多個部分熔融事件發生，並且會依照部分熔融比例累加，隨後藉由部分熔融比例計算模型中的岩漿量。
 
 \subsection{岩漿庫}\label{岩漿庫}
 本研究假設有$F_M$比例的岩漿留在地函楔中，$F_C$比例的岩漿留在地殼中，其餘$1-F_M-F_C$比例的岩漿會噴發至地表。
@@ -333,20 +358,21 @@ S = -k\nabla z \label{eq:S}
     P = P_0 \times p_{melt} \times F_M \times A \label{eq:Magma P}
 \end{align}
 \begin{align}
-    \lambda = \lambda_0 exp(-\lambda_T\Delta T) \label{eq:Magma lambda}
+    \lambda = \lambda_0\times exp(-\lambda_T \times \Delta T) \label{eq:Magma lambda}
 \end{align}
 式\ref{eq:Magma}中，$Pdt$項為每時間點岩漿產生量，$M(t)\lambda dt$為每時間點岩漿冷卻量(岩石結晶量)，與岩漿庫大小有關，$P$為岩漿產生速率，$\lambda$為岩漿冷卻頻率。
 式\ref{eq:Magma P}計算岩漿產生速率，$P_0$是岩漿產生常數，單位為$m^3/m/s$，$p_{melt}$來自式\ref{eq:melting}，為部分熔融百分比，$A$為發生部分熔融的面積比例。
 式\ref{eq:Magma lambda}描述岩漿冷卻參數$\lambda$，$\lambda_0$為岩漿冷卻衰變常數，$\lambda_T$是與溫度有關的冷卻係數，單位為$\frac{1}{K}$。
 
-岩漿量的變化意味著岩石的相態改變。
-物質的相態改變會導致能量的改變，此時需要考慮岩漿量變化過程中的潛熱(latent heat)以滿足能量守恆。
+岩漿量的變化意味著岩石的物態改變。
+物質的物態改變在溫度相同的情形下會有能量的吸收或釋放，此時需要考慮岩漿量變化過程中的潛熱以滿足能量守恆。
 \subsection{岩漿作用造成的溫度影響}\label{岩漿作用造成的溫度影響}
-本研究考慮在岩漿結晶過程中所釋放的潛熱(放熱)。
-模型中會計算每個時間的岩漿變化量($\Delta M$)，計算溫度變化量，使用公式如下：
+本研究只考慮在岩漿結晶過程中所釋放的潛熱(放熱)。
+模型中會計算每個時間的岩漿變化量($\Delta M$)，估計岩漿結晶冷卻中釋放的能量與其所造成的溫度變化量，使用公式如下：
 \begin{align}
-    T(t+dt) = T(t) + M(t+dt)\lambda dt\frac{L_H}{C_p}\label{eq:latent heat}
+    T(t+dt) = T(t) + M(t+dt)\times \lambda \times dt \times \frac{L_H}{C_p}\label{eq:latent heat}
 \end{align}
-其中$L_H$為岩漿潛熱值，在本研究參考模型中使用安山岩漿的潛熱值$3\times 10^5$ J/kg(\citealp{liu2011modeling})。$C_p$為等壓比熱容量。
+其中$L_H$為岩漿潛熱值，在本研究參考模型中使用安山岩漿的潛熱值$3\times 10^5$ J/kg(\citealp{liu2011modeling})。
+$C_p$為等壓比熱容量。
 
 當岩漿結晶後，周遭岩石的溫度因放熱而有局部升高的現象，該過程會些微影響地函楔中的黏滯度與隱沒帶動力過程。
