@@ -3,10 +3,10 @@
 \chapter{數值模型}
 
 同第一章所述，地球動力學為探討地球內部的動力過程，以及地球內部物質受力後所發生的變形作用，其所牽扯的運動過程複雜。
-地質學藉由地表觀察，可得知過去地表上經歷的地質事件，進而間接獲得當時的動力狀態，不過隨著時間推移，可用的岩石紀錄越來越少，並且地質資料並無法完全代表地球內部的動力過程。
+地質學藉由地表觀察，可得知過去地表上經歷的地質事件，進而間接獲得當時的動力狀態，不過隨著時間往回推移，可用的岩石紀錄越來越少，並且地質資料並無法完全代表地球內部的動力過程。
 地球內部的直接觀察僅能靠鑽井資料獲取，然而地球上最深的鑽井資料為12公里(\citealp{ganchin1998seismic})，不到地球半徑的千分之二。
-因此，只能靠間接方法探測地球內部，地球物理學便是強大研究學門。
-地球物理學包含多種研究，重力學、磁力學、大地電磁等方法利用矩陣逆推(inversion)計算地表測站資料，獲得地下構造成像，不過這些方法並不是接收直接通過地球內部介質而來的訊號，因此約束不多且深度解析有限。
+因此，只能靠間接方法探測地球內部，地球物理學便是其中最為強大研究學門之一。
+地球物理學包含多種研究，重力學、磁力學、大地電磁等方法利用逆推(inversion)，不過這些資料所獲得的地下構造密度或導電率成像並不具有唯一性。
 地震波能量穿透整個地球被全球地表測站接收，過程中地震波直接通過地球內部介質，為地球內部構造提供有效的資訊，故地震學為目前最常見對地球深部構造的探勘方法。
 儘管如此，最早的地震學發展始於19世紀末，其所觀測得之構造在地質時間尺度上只能被視為瞬間狀態，無法代表地球內部過去的構造狀態。
 為了彌補地球內部在時間上與空間上的有限數據量，地質建模與模擬成為探討地球內部演化的有力工具。
@@ -16,7 +16,7 @@
 連續介質特性描述可被用於岩石的密度、壓力、速度、應變等不同維度物理的場變量(field variables)。
 由於在地質尺度上長期且緩慢的岩石變形過程可視為流體，因此地球動力學模型在不同尺度上部分可視為流體力學的展現。
 而流體力學的數學式共有三大守恆定律，分別為質量守恆、動量守恆與能量守恆。
-該三大守恆定律可寫成偏微分方程式的形式，同時也是連續方程式，此時因偏微分方程式之解析解多半不存在，僅能利用數值近似方法求得最佳解。
+該三大守恆定律可寫成偏微分方程式的形式，同時也是連續方程式，因偏微分方程式之解析解多半不存在，僅能利用數值近似方法求得最佳解。
 
 在本章節中會介紹數值模擬的計算方式以及模型物質物理特性。
 
@@ -64,7 +64,7 @@ $f$ 為作用在物質上的作用力，$m$為物質的質量。
 \begin{align}
 \rho \vec a = \nabla\cdot\vec\sigma+\rho\vec g\label{eqn:momentum Lagrangian2}
 \end{align}
-此為Navier-Stokes方程式。 其中$\rho$為密度，$\vec a$為節點加速度，$\vec\sigma$為應力張量(stress tensor)，$g$為重力加速度。
+此為Navier-Stokes方程式。 其中$\rho$為密度，$\vec a$為節點加速度，$\vec\sigma$為應力張量(stress tensor)，$\vec g$為重力加速度。
 
 \subsection{能量守恆}
 為了描述一連續體中的能量平衡狀態，使用溫度方程式表示能量的進出。
@@ -98,7 +98,7 @@ $\sigma^{'}$為軸差應力(deviatoric stress)，$\dot\varepsilon^{'}$為軸差�
 
 在近地表區域，岩石處於相對較低溫的環境，因此地球岩石圈表層由脆性變形(brittle deformation)所主導，包含低壓下的彈性變形(elastic deformation)與高壓下的塑性變形(plastic deformation)。
 而在地球岩石圈深處到地球內部，岩石因周遭溫度隨深度增加而表現出不可逆的黏性變形(viscous deformation)。
-因此，若地球動力學模型需同時考慮廣泛的岩石變形特性時，則模型流變學應同時包含彈-塑-黏性(elasto-visco-plastic)變形。
+因此，若地球動力學模型需同時考慮廣泛的岩石變形特性時，則模型流變學應同時包含彈-塑-黏性(elasto-plasto-viscos)變形。
 
 彈性變形假設物質所承受的應力與其應變呈正比，可以是虎克定律的展現。彈性變形很重要的精隨為其變形是可逆的，若施加在彈性物質上的應力被移除，其變形量會變回零。
 由虎克定律得到彈性通式:
@@ -163,7 +163,7 @@ $\eta$為黏滯度，$\dot\varepsilon^{'}$為軸差應變率張量矩陣，$\dot
 \begin{figure*}[ht!]
     \centering
     \includegraphics[height=3in]{strength_v3.pdf}
-    \caption[岩石強度剖面示意圖]{岩石強度剖面示意圖，藍色虛線為彈塑性變形; 紅色虛線則為黏彈性變形。黑色實線為最終強度，採用$\sigma_{elasto-plastic}$, $\sigma_{elasto-viscous}$兩者之間最小值。}
+    \caption[岩石強度剖面示意圖]{岩石強度剖面示意圖，藍色虛線為彈塑性變形; 紅色虛線則為黏彈性變形。黑色實線為最終強度，採用($\sigma_{elasto-plastic}$, $\sigma_{elasto-viscous}$)兩者之間最小值。}
     \label{fig::strength}
 \end{figure*}
 
@@ -288,12 +288,12 @@ T > 800-3.5\times 10^{-8}\times (P\times 3 \times 10^{4} -62)^{2} \; {\rm ^\circ
 
 %\subsection{熱邊界條件}\label{熱邊界條件}
 本節中，岩石圈定義為熱傳導邊界層，本研究的熱傳導邊界底部溫度為攝氏1330$^{\circ}$。
-模型中海洋岩石圈溫度構造使用半空間冷卻模型(half space cooling model)，海洋岩石圈厚度與岩石圈年紀之開根號呈正比。由 \citealp{davis1974}提出:
+模型中海洋岩石圈溫度構造使用半空間冷卻模型(half space cooling model)，海洋岩石圈厚度與岩石圈年紀之開根號呈正比。由 \citet{davis1974}提出:
 \begin{align}
 T=T_0+(T_m-T_0)\cdot erf(\frac{z}{2\sqrt{\kappa t}}) \label{eq:Half Space Model}
 \end{align}
 $T$ 是溫度，$T_m$ 是地函溫度，在本研究中使用攝氏1330$^{\circ}$。
-$z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在本研究中使用$10^{-6} \frac{m}{s^2}$。$t$ 是海洋岩石圈年紀。
+$z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在本研究中使用10$^{-6}$ms$^{-2}$。$t$ 是海洋岩石圈年紀。
 
 大陸板塊的溫度構造有雙層構造與單層構造之區別。
 本研究根據墨西哥與智利過去的地球物理研究，分別對墨西哥模型與智利模型設定不同的大陸岩石圈溫度構造。
@@ -329,13 +329,13 @@ $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在�
 
 質量隨時間的變化會等同於物質在空間中的通量，因此式($\ref{eq:S}$) 與式($\ref{eq:rho}$) 的關係如下:
 \begin{align}
-\rho\frac{\partial z}{\partial t} = -\vec\nabla\cdot \vec S = -\vec\nabla \cdot (-k\nabla \vec z)\label{eq:erosion2}
+\rho\frac{\partial z}{\partial t} = -\vec\nabla\cdot \vec S = -\vec\nabla \cdot (-k\nabla z)\label{eq:erosion2}
 \end{align}
 或
 \begin{align}
 \frac{\partial z}{\partial t} = \frac{k}{\rho}\nabla^2 z\label{eq:erosion3}
 \end{align}
-令$\frac{k}{\rho}=\kappa_S$，其中$\kappa_S$為坡度擴散係數，本研究中侵蝕與堆積的坡度擴散係數相同，單位為$\frac{m^2}{s}$。可得:
+令$\frac{k}{\rho}=\kappa_S$，其中$\kappa_S$為坡度擴散係數，本研究中侵蝕與堆積的坡度擴散係數相同，單位為m${^2}$/s。可得:
 \begin{align}
 \frac{\partial z}{\partial t} = \kappa_S\nabla^2 z\label{eq:erosion4}
 \end{align}
@@ -351,7 +351,7 @@ $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在�
     \includegraphics[width=6in]{melting.pdf}
     \caption[模型內岩漿作用示意圖。]{模型內岩漿作用示意圖。圖中繪製兩個不同的部分熔融事件。每個獨立部分熔融事件會對應獨立的岩漿庫。
     模型中有F$_M$比例的岩漿留在地函楔中，F$_C$比例的岩漿留在地殼中，其餘1-F$_M$-F$_C$比例的岩漿會噴發至地表形成火山島弧，如圖上方紅紫色三角形。
-    地函岩漿庫中的岩漿均勻分布在圖中地函楔中紅橘色倒三角形。
+    地函岩漿庫中的岩漿均勻分布在地函楔中紅橘色倒三角形。
     圖中假設部分熔融事件二的部分熔融體積為a$_2$地函岩漿庫體積為A$_{M2}$。
     }
     \label{fig::melting}
@@ -367,29 +367,38 @@ $z$ 是與地表的距離，單位是公里，$\kappa$ 是熱擴散系數，在�
 其中$T_{solidus}$為該標記子深度下對應至固相線的溫度，即為熔點(melting point)，部分熔融比例在熔點與高於熔點500度範圍內從0$\%$線性增加至10$\%$。
 模型中允許多個部分熔融事件發生，並且會依照部分熔融比例累加，隨後藉由部分熔融比例計算模型中的岩漿量。
 
-\subsection{岩漿庫}\label{岩漿庫}
+\subsection{岩漿庫與岩脈}\label{岩漿庫}
 本研究假設有F$_M$比例的岩漿留在地函楔中，F$_C$比例的岩漿留在地殼中，其餘1-F$_M$-F$_C$比例的岩漿會噴發至地表。
 留在地函楔中的岩漿成為岩漿庫，部分熔融發生後，模型中假設從熔點開始產生一倒三角形的地函岩漿庫，假設地函岩漿庫頂部皆在莫荷面下，並在莫荷面處達到最大寬度$M_W$公里，如圖\ref{fig::melting}所示，該最大寬度與岩漿往左右移動的流動性有關，本研究中所有模型一律將最大寬度設為50公里。
-由於本研究並沒有探討地殼中岩漿對模型動力的影響，因此地殼中的岩漿庫一律視為一垂直莫荷面的柱狀岩脈。
+由於本研究並沒有探討地殼中岩漿對模型動力的影響，因此地殼中的岩漿一律視為一垂直莫荷面的柱狀岩脈。
 
-岩漿庫中每個網格的體積融化比例(M)為與時間相關的函數，每個部分熔融事件所產生的岩漿會在模型中累積。
+岩漿庫與岩脈中每個網格的體積融化比例($M$)為與時間相關的函數，$M$又可視為每個網格中的岩漿比例，每個部分熔融事件所產生的岩漿會在模型中累積。
 每個時間點的體積融化比例分為每個時間點產生的岩漿量與每個時間點冷卻的岩漿量，由下式表示:
 \begin{align}
-    M(t+dt)-M(t) = \Delta M = Pdt-M(t)\lambda dt \label{eq:Magma}
+    M(t+dt)-M(t) = \Delta M = P_m dt-M(t)\lambda dt \label{eq:Magma}
 \end{align}
 \begin{align}
-    P = P_0 \times p_{melt} \times F_M \times A \label{eq:Magma P}
+    P_m = P_{m0} \times p_{melt} \times {\rm F}_M \times {\rm A} \label{eq:Magma P}
 \end{align}
 \begin{align}
-    \lambda = \lambda_0\times exp(-\lambda_T \times \Delta T) \label{eq:Magma lambda}
+    \lambda_m = \lambda_{m0}\times {\rm exp}(-\lambda_{mT} \times \Delta T) \label{eq:Magma lambda}
 \end{align}
-式\ref{eq:Magma}中，$Pdt$項為每時間點岩漿產生量，與部分熔融比例有關，$P$為岩漿產生速率。
-$M(t)\lambda dt$為每時間點岩漿冷卻量(岩石結晶量)，與岩漿庫大小有關，$\lambda$為岩漿冷卻速率。
-式\ref{eq:Magma P}計算岩漿產生速率，$P_0$是岩漿產生常數，單位為$m^3/m/s$，亦即每海溝截面所產生的岩漿體積速率。
+式\ref{eq:Magma}中，$P_m dt$項為每時間點岩漿產生量，與部分熔融比例有關，$P_m$為岩漿產生速率。
+$M(t)\lambda_m dt$為每時間點岩漿冷卻量(岩石結晶量)，與岩漿體積($M(t)$)有關，$\lambda_m$為岩漿冷卻速率。
+
+式\ref{eq:Magma P}計算岩漿產生速率，$P_{m0}$是岩漿產生常數，單位為m$^3$/m/s，亦即每海溝截面所產生的岩漿體積速率。
 $p_{melt}$來自式\ref{eq:melting}，為部分熔融百分比。
-A為發生部分熔融的體積比例，地函中的A為發生部分熔融體積與預設岩漿庫倒三角形的總面積比值，以圖\ref{fig::melting}的部分熔融事件二而言，A = (部分熔融發生面積 a$_2$/倒三角形面積 A$_{M2}$)，地殼中的A = (部分熔融發生面積a$_2$/地殼岩脈面積A$_{C2}$)。
+A為發生部分熔融的體積比例，一次部分熔融事件包含地函中的岩漿產生量(岩漿庫)與地殼中的岩漿產生量(岩脈)。
+地函中的A為發生部分熔融體積與預設岩漿庫倒三角形的總體積比值，地殼中的A為發生部分熔融體積與岩脈總體積比值。
+以圖\ref{fig::melting}的部分熔融事件二為例:
+
+地函 A = (部分熔融發生體積a$_2$/倒三角形體積A$_{M2}$)
+
+地殼 A = (部分熔融發生體積a$_2$/地殼岩脈體積A$_{C2}$)
+
+
+式\ref{eq:Magma lambda}描述岩漿冷卻參數$\lambda_m$，$\lambda_{m0}$為岩漿冷卻衰變常數，$\lambda_{mT}$是與溫度有關的冷卻係數，單位為1/K。
 $\Delta T$為包含岩漿的網格與周遭網格的溫度差，溫度差越高(亦即周遭網格溫度越低)，則岩漿冷卻速率越快。
-式\ref{eq:Magma lambda}描述岩漿冷卻參數$\lambda$，$\lambda_0$為岩漿冷卻衰變常數，$\lambda_T$是與溫度有關的冷卻係數，單位為$\frac{1}{K}$。
 
 岩漿量的變化意味著岩石的物態改變。
 物質的物態改變在溫度相同的情形下會有能量的吸收或釋放，本研究有考慮岩漿量變化過程中的能量變化。
@@ -397,7 +406,7 @@ $\Delta T$為包含岩漿的網格與周遭網格的溫度差，溫度差越高(
 本研究只考慮在岩漿結晶過程中所釋放的潛熱(放熱)。
 模型中會計算每個時間的岩漿變化量($\Delta M$)，估計岩漿結晶冷卻中釋放的能量與其所造成的溫度變化量，使用公式如下:
 \begin{align}
-    T(t+dt) = T(t) + M(t+dt)\times \lambda \times dt \times \frac{L_H}{C_p}\label{eq:latent heat}
+    T(t+dt) = T(t) + M(t+dt)\times \lambda_m \times dt \times \frac{L_H}{C_p}\label{eq:latent heat}
 \end{align}
 其中$L_H$為岩漿潛熱值，在本研究使用安山岩漿的潛熱值$3\times 10^5$ J/kg(\citealp{liu2011modeling})。
 $C_p$為等壓比熱容量。
@@ -408,16 +417,16 @@ $C_p$為等壓比熱容量。
 本研究利用數值解的結果計算模型中不同時間點，在假設海溝為支點的情況下，獲得隱沒板塊所受的重力力矩與動水壓力力矩。
 本研究所使用重力力矩數值求解式如下:
 \begin{align}
-    \tau_{gravity} =  g\sum ^L_{l=0} \Delta \rho(l)\ r(l)\ cos\ \alpha (l)\ V(l) 
+    \tau_{gravity} =  g\sum ^L_{l=0} \Delta \rho(l)\ r(l)\ {\rm cos}\ \alpha (l)\ V(l) 
     \label{eqn:tau_gravity}
 \end{align}
-整段隱沒板塊被切割成$l$段板塊，每段$l$皆有個別的密度差$\Delta \rho(l)$、力臂(moment arm)為$r(l)\ cos\ \alpha (l)$與體積$V(l)$。
-其中$r(l)$為從支點到$l$段中心點的直線距離，$ \alpha (l)$為$r(l)$與重力的夾角，亦即$r(l)$與垂直方向上的夾角，故$r(l)\times cos\ \alpha (l)$為轉動系統中的力臂。
+整段隱沒板塊被切割成$l$段板塊，每段$l$皆有個別的密度差$\Delta \rho(l)$、力臂(moment arm)為$r(l)\ {\rm cos}\ \alpha (l)$與體積$V(l)$。
+其中$r(l)$為從支點到$l$段中心點的直線距離，$ \alpha (l)$為$r(l)$與重力的夾角，亦即$r(l)$與垂直方向上的夾角，故$r(l)\times {\rm cos}\ \alpha (l)$為轉動系統中的力臂。
 體積$V(l)$由隱沒板塊上攝氏800$^{\circ}$等溫線以內範圍所決定。
 
 本研究所使用動水壓力力矩數值求解式如下:
 \begin{align}
-    \tau_{suction} =  \sum ^L_{l=0} [P_{sub}(l)-P_{wedge}(l)]\cdot dl \cdot cos\ \beta(l)\cdot r(l)\ 
+    \tau_{suction} =  \sum ^L_{l=0} [P_{sub}(l)-P_{wedge}(l)]\cdot dl \cdot {\rm cos}\ \beta(l)\cdot r(l)\ 
     \label{eqn:tau_suction}
 \end{align}
 與重力力矩計算方法雷同，將隱沒板塊切割成$l$段，計算直接垂直於每段$l$上下的模型動水壓力差與$dl$段的乘積獲得作用在隱沒板塊上的壓力梯度力，並且再乘上$dl$段與力臂的夾角$\beta(l)$獲得作用力垂直作用於力矩上的實際大小。
@@ -433,7 +442,7 @@ $C_p$為等壓比熱容量。
     \centering
     \begin{tabular}{m{5.5cm}m{2cm}m{2cm}m{2.4cm}m{2.3cm}m{1cm}m{1cm}m{1.7cm}m{1.7cm}}
         \hline
-        Material                                                                                    & \begin{tabular}[c]{@{}l@{}}Density\\ (kg m$^{-3}$)\end{tabular} & n    & \begin{tabular}[c]{@{}l@{}}A\\ (MPa$^{-n}$s$^{-1}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}E\\ J$\cdot$ m\textasciicircum{}\{-3\}\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\phi_0$\\ ($^{\circ}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\phi_1$\\ ($^{\circ}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}$C_0$\\ Pa\end{tabular} & \begin{tabular}[c]{@{}l@{}}$C_1$\\ Pa\end{tabular} \\ \hline
+        Material                                                                                    & \begin{tabular}[c]{@{}l@{}}Density\\ (kg m$^{-3}$)\end{tabular} & n    & \begin{tabular}[c]{@{}l@{}}A\\ (MPa$^{-n}$s$^{-1}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}E\\ J$\cdot$ m$^{-3}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\phi_0$\\ ($^{\circ}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\phi_1$\\ ($^{\circ}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}$C_0$\\ Pa\end{tabular} & \begin{tabular}[c]{@{}l@{}}$C_1$\\ Pa\end{tabular} \\ \hline
         basalt                                                                                      & 2880                                                            & 3.05 & 1.25$\times$10$^{-1}$                                                          & 3.76$\times$10$^5$                                                                         & 30                                                              & 15                                                              & 4$\times$10$^7$                                                & 4$\times$10$^6$                                                 \\
         eclogite                                                                                    & 3480                                                            & 3.05 & 1.25$\times$10$^{-1}$                                                          & 4.5$\times$10$^5$                                                                          & 30                                                              & 15                                                              & 4$\times$10$^7$                                                & 4$\times$10$^6$                                                 \\
         continental upper crust                                                                     & 2800                                                            & 3.05 & 1.25$\times$10$^{-1}$                                                          & 2.76$\times$10$^5$                                                                         & 30                                                              & 15                                                              & 4$\times$10$^7$                                                & 4$\times$10$^6$                                                 \\
