@@ -408,7 +408,7 @@ $\Delta T$為包含岩漿的網格與周遭網格的溫度差，溫度差越高(
 \begin{align}
     T(t+dt) = T(t) + M(t+dt)\times \lambda_m \times dt \times \frac{L_H}{C_p}\label{eq:latent heat}
 \end{align}
-其中$L_H$為岩漿潛熱值，在本研究使用安山岩漿的潛熱值$3\times 10^5$ J/kg(\citealp{liu2011modeling})。
+其中$L_H$為岩漿潛熱值，在本研究使用安山岩漿的潛熱值$3\times 10^5$ J/kg (\citealp{liu2011modeling})。
 $C_p$為等壓比熱容量。
 
 當岩漿結晶後，周遭岩石的溫度因放熱而有局部升高的現象，該過程會些微影響地函楔中的黏滯度與隱沒帶動力過程。
@@ -421,23 +421,40 @@ $C_p$為等壓比熱容量。
     \label{eqn:tau_gravity}
 \end{align}
 整段隱沒板塊被切割成$l$段板塊，每段$l$皆有個別的密度差$\Delta \rho(l)$、力臂(moment arm)為$r(l)\ {\rm cos}\ \alpha (l)$與體積$V(l)$。
-其中$r(l)$為從支點到$l$段中心點的直線距離，$ \alpha (l)$為$r(l)$與重力的夾角，亦即$r(l)$與垂直方向上的夾角，故$r(l)\times {\rm cos}\ \alpha (l)$為轉動系統中的力臂。
+其中$r(l)$為從支點到$l$段中心點的直線距離，$\alpha (l)$為$r(l)$與重力的夾角，亦即$r(l)$與垂直方向上的夾角，故$r(l)\times {\rm cos}\ \alpha (l)$為轉動系統中的力臂。
 體積$V(l)$由隱沒板塊上攝氏800$^{\circ}$等溫線以內範圍所決定。
 
 本研究所使用動水壓力力矩數值求解式如下:
 \begin{align}
-    \tau_{suction} =  \sum ^L_{l=0} [P_{sub}(l)-P_{wedge}(l)]\cdot dl \cdot {\rm cos}\ \beta(l)\cdot r(l)\ 
+    \tau_{suction} =  \sum ^U_{u=0} [P_{sub}(u)-P_{wedge}(u)]\cdot du \cdot {\rm cos}\ \beta(u)\cdot r(u)\\
+    = \sum ^U_{u=0} \Delta P\cdot du \cdot {\rm cos}\ \beta(u)\cdot r(u)
     \label{eqn:tau_suction}
 \end{align}
-與重力力矩計算方法雷同，將隱沒板塊切割成$l$段，計算直接垂直於每段$l$上下的模型動水壓力差與$dl$段的乘積獲得作用在隱沒板塊上的壓力梯度力，並且再乘上$dl$段與力臂的夾角$\beta(l)$獲得作用力垂直作用於力矩上的實際大小。
-最後計算壓力梯度力與力臂的乘積便為每段$l$所受的動水壓力力矩。
+與重力力矩計算方法雷同，將隱沒板塊切割成$u$段，為了確保每個地函網格中的動水壓力垂直於隱沒板塊，因此這裡使用的$du$長度大約為網格長度的30$\%$。
+首先將所有隱沒板塊網格(包含玄武岩與榴輝岩，不包含沉積物)內差，每單位網格長度共有三個內差點，獲得圖\ref{fig::force_calculation}中黑點，每兩黑點距離皆為一段$du$，並計算每段$du$的中點座標，如圖\ref{fig::force_calculation}中綠點。
+對黑點進行五次多項式迴歸，獲得一五次方程式，如圖\ref{fig::force_calculation}a中紫色虛線。
 
-積分每段$l$所造成的轉動重力力矩與動水壓力力矩後便可得該時間點下的總重力力矩與總動水壓力力矩，由於本研究為二維模型，單位皆為N$\cdot$ m/m。
+利用外積方式以迴歸線將所有地函網格分成兩側，迴歸線上方視為隱沒板塊上地函楔(mantle wedge)，迴歸線下方視為隱沒板塊下地函(subslab mantle)，分別為圖\ref{fig::force_calculation}a中藍色網格與綠色網格。
+計算模型中每個地函網格中心點座標與隱沒板塊上每個綠點的距離，如圖\ref{fig::force_calculation}a中橘色箭頭所示，找出每個網格與隱沒板塊的最短距離，視為網格與隱沒板塊的投影點。
+模型中所有地函岩相網格皆被投影至隱沒板塊上的某一綠點，針對每一綠點，篩選出所有投影至該綠點且距離小於20公里的網格，稱為被投影網格。
+由於單一綠點的被投影網格可能不同個數的地函楔網格與隱沒板塊下地函網格，因此，計算不同被投影網格的上下地函網格動水壓力差$[P_{sub}(u)-P_{wedge}(u)]$，以動水壓力差絕對值最大值為最終選定的動水壓力差$\Delta P$。% = max (abs |[P_{sub}(m)-P_{wedge}(n)]|)$
+
+計算垂直於每段$u$上下的模型動水壓力差與$du$段的乘積，獲得作用在隱沒板塊上的壓力梯度力，即為吸力，其向量方向為$du$的法向量。
+將吸力乘上$du$段與力臂$r(u)$的夾角$\beta(u)$獲得吸力垂直作用於力矩上的實際大小，隨後乘上力臂$r(u)$便為每段$u$所受的動水壓力力矩，幾何配置如圖\ref{fig::force_calculation}b所示。
+
+積分每段$l$所造成的轉動重力力矩與每段$u$所造成的動水壓力力矩後便可得該時間點下的總重力力矩與總動水壓力力矩，由於本研究為二維模型，單位皆為N$\cdot$m/m。
 
 \begin{figure*}[ht!]
     \centering
-    \includegraphics[width=5.5in]{Force_Calculation.pdf}
-    \caption[本研究計算動水壓力方法]{本研究計算動水壓力方法。}
+    \includegraphics[width=5in]{Force_Calculation.pdf}
+    \caption[本研究計算動水壓力方法]{本研究計算動水壓力方法。
+    (a)模型中網格示意圖。
+    網格顏色代表不同岩相，藍色與綠色為地函、黃色為沉積物、橘色為隱沒板塊，其中隱沒板塊五次回歸多項式(紫色虛線)將地函網格區分成地函楔(藍色)與隱沒板塊下地函(綠色)。
+    黑點為隱沒板塊內差值，綠點為每兩黑點間的中點，叉叉為地函楔其中一網格之中點座標，橘色箭頭為該網格與隱沒板塊上每個綠點的直線距離。
+    (b)計算動水壓力力矩的幾何圖。
+    夾角$\beta$為$du$與力臂$r(u)$的夾角。
+    黑點為隱沒板塊內差值，綠點為兩黑點之中點，深藍點為海溝座標。吸力($F_{total}$)向量垂直作用於$du$，而其在力臂(moment arm, 綠色箭頭)上的最終作用力為橘色箭頭。
+    }
     \label{fig::force_calculation}
 \end{figure*}
 
